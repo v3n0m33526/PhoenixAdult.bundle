@@ -29,7 +29,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.title = detailsPageElements.xpath('//h1[@class="description"]/text()')[0].strip()
 
     # Tagline and Collection(s)
-    metadata.collections.add("JAY's POV")
+    if Prefs['collections_addsitename']:
+        metadata.collections.add("JAY's POV")
 
     # Studio
     metadata.studio = detailsPageElements.xpath('//div[@class="studio"]//span/text()')[1].strip()

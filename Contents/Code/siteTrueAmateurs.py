@@ -47,7 +47,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Tagline and Collection(s)
     metadata.tagline = metadata.studio
-    metadata.collections.add(metadata.tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.tagline)
 
     # Genres
     for genreLink in detailsPageElements.xpath('//div[@class="tjb798-2 flgKJM"]/span[1]/a'):

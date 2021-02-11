@@ -141,7 +141,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
         movieGenres.addGenre(genreName)
 
-    metadata.collections.add('Japan Adult Video')
+    if Prefs['collections_addsitename']:
+        metadata.collections.add('Japan Adult Video')
 
     # Posters
     art = []

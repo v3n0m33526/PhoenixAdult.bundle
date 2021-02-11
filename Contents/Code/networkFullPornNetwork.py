@@ -69,7 +69,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Tagline and Collection(s)
     metadata.collections.clear()
     for seriesName in [metadata.studio, PAsearchSites.getSearchSiteName(siteNum)]:
-        metadata.collections.add(seriesName)
+        if Prefs['collections_addsitename']:
+            metadata.collections.add(seriesName)
 
     # Release Date
     if sceneDate:

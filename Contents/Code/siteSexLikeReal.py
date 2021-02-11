@@ -49,7 +49,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     metadata.studio = detailsPageElements.xpath('//a[@rel="category"]')[0].text_content().strip()
     metadata.tagline = metadata.studio
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
 
     # Release Date
     date = detailsPageElements.xpath('//time/@datetime')[0]

@@ -61,7 +61,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     else:
         tagline = 'Intersex'
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(tagline)
 
     # Release Date
     date = detailsPageElements.xpath('//div[contains(@class, "has-text-white-ter")][1]//span[contains(@class, "is-dark")][1]/text()')[0]

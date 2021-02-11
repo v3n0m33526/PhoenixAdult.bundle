@@ -40,12 +40,14 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     try:
         taglineFirst = detailsPageElements.xpath('//div[@class="col-xs-12 col-md-6 with-margin"]//div[@class="entries"]/div')
         tagline = taglineFirst[0].xpath('//a')[0].text_content().strip()
-        metadata.collections.add('Dorcel Vision')
+        if Prefs['collections_addsitename']:
+            metadata.collections.add('Dorcel Vision')
+            metadata.collections.add(tagline)
     except:
         pass
     metadata.tagline = tagline
     metadata.studio = tagline
-    metadata.collections.add(tagline)
+    
 
     # Title
     metadata.title = detailsPageElements.xpath('//h1')[0].text_content().strip()

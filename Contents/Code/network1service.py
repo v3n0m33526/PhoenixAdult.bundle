@@ -121,11 +121,13 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             isInCollection = True
             break
 
-    if not isInCollection:
-        seriesNames.insert(0, PAsearchSites.getSearchSiteName(siteNum))
+    if Prefs['collections_addsitename']:
+        collections.add(PAsearchSites.getSearchSiteName(siteNum))
 
-    for seriesName in seriesNames:
-        metadata.collections.add(seriesName)
+    if Prefs['collections_addseries'] and isInCollection:
+        for seriesName in seriesNames:
+            metadata.collections.add(seriesName)
+        
 
     # Release Date
     date_object = parse(detailsPageElements['dateReleased'])

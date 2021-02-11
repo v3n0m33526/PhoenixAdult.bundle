@@ -41,7 +41,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = PAsearchSites.getSearchSiteName(siteNum)
     metadata.tagline = tagline
-    metadata.collections.add(metadata.tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.tagline)
 
     # Release Date
     date = detailsPageElements.xpath('//div/span[@class="value"]')[1].text_content().strip()

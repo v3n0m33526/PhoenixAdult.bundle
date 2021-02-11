@@ -88,7 +88,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     metadata.studio = PAsearchSites.getSearchSiteName(siteNum)
     metadata.tagline = metadata.studio
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
 
     # Release date
     date_object = parse(detailsPageElements['release_date'])

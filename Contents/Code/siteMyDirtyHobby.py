@@ -57,8 +57,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = detailsPageElements.xpath('//div[@class="info-wrapper"]//a')[0].text_content().strip()
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
-    metadata.collections.add('MyDirtyHobby')
+    if Prefs['collections_addseries']:
+        metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add('MyDirtyHobby')
 
     # Release Date
     date = detailsPageElements.xpath('//i[contains(@class, "fa-calendar")]/parent::dd')[0].text_content().strip()

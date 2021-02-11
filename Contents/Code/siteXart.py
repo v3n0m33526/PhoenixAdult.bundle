@@ -59,7 +59,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = PAsearchSites.getSearchSiteName(siteNum).strip()
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(tagline)
 
     # Release Date
     date = detailsPageElements.xpath('//h2')[2].text_content()[:-1]
@@ -76,7 +77,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Actors
     movieActors.clearActors()
     actors = detailsPageElements.xpath('//h2//a')
-    if actors:
+    actorName = ""
+    if metadata.title == 'Mia Make Me Cum' or metadata.title == 'X-Art Sex to the Rescue':
+        movieActors.addActor('Mia Tracy', 'https://www.europornstar.com/Mia-Trejsi/Mia-Trejsi.jpg')
+    elif actors:
         if len(actors) == 3:
             movieGenres.addGenre('Threesome')
         if len(actors) == 4:
@@ -95,16 +99,20 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Posters
     art = []
-    xpaths = [
-        '//div[@class="gallery-item"]//img/@src',
-        '//img[contains(@src, "/videos")]/@src',
-        '//section[@id="product-gallery"]//img/@data-src'
-    ]
-    for xpath in xpaths:
-        for poster in detailsPageElements.xpath(xpath):
-            poster.replace(' ', '_')
+    # xpaths = [
+    #    '//div[@class="gallery-item"]//img/@src',
+    #    '//img[contains(@src, "/videos")]/@src',
+    #    '//section[@id="product-gallery"]//img/@data-src'
+    # ]
+    # for xpath in xpaths:
+    #     for poster in detailsPageElements.xpath(xpath):
+    #         poster.replace(' ', '_')
 
-            art.append(poster)
+    xpath = '//div[@class="flex-video widescreen"]//img[contains(@src, "/videos")]/@src'
+    for poster in detailsPageElements.xpath(xpath):
+        poster = poster.replace("_1","_2")
+        Log(poster)
+        art.append(poster)
 
     # Extra Posters
     art_ext = []

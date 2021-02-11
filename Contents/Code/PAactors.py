@@ -86,6 +86,8 @@ class PhoenixActors:
                     role = metadata.roles.new()
                     role.name = actorName
                     role.photo = actorPhoto
+            if Prefs['collections_addactors']:
+                metadata.collections.add(displayActorName)
 
 
 def actorDBfinder(actorName):

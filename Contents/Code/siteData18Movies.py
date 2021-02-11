@@ -146,10 +146,12 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Tagline and Collection(s)
     metadata.collections.clear()
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
     try:
         tagline = detailsPageElements.xpath('//p[contains(., "Serie")]//a[@title]')[0].text_content().strip()
-        metadata.collections.add(tagline)
+        if Prefs['collections_addsitename']:
+            metadata.collections.add(tagline)
     except:
         pass
 

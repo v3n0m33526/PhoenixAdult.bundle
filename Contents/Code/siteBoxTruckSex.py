@@ -52,7 +52,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     metadata.studio = PAsearchSites.getSearchSiteName(siteNum)
     metadata.tagline = metadata.studio
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
 
     # Actors
     actors = detailsPageElements.xpath('//h5/a[contains(@href, "models")]')

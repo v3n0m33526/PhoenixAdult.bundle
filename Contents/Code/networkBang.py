@@ -49,10 +49,12 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.studio = detailsPageElements['studio']['name'].title()
 
     # Tagline and Collection(s)
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
     seriesScene = detailsPageElements['series']['name']
     if seriesScene:
-        metadata.collections.add(seriesScene.title())
+        if Prefs['collections_addseries']:
+            metadata.collections.add(seriesScene.title())
 
     # Release Date
     date = detailsPageElements['releaseDate']

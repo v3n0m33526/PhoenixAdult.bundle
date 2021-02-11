@@ -51,7 +51,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Studio/Tagline/Collection
     metadata.collections.clear()
     metadata.tagline = metadata.studio
-    metadata.collections.add(metadata.studio)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
 
     # Genres
     movieGenres.clearGenres()

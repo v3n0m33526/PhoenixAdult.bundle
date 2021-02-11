@@ -102,7 +102,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         genreName = genreLink.text_content().lower().strip()
         movieGenres.addGenre(genreName)
 
-    metadata.collections.add('Japan Adult Video')
+    if Prefs['collections_addsitename']:
+        metadata.collections.add('Japan Adult Video')
 
     # Actors
     for actorLink in detailsPageElements.xpath('//a[@class="avatar-box"]'):

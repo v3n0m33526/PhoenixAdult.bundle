@@ -70,7 +70,11 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Tagline and Collection(s)
     metadata.collections.clear()
     metadata.tagline = PAutils.parseTitle(detailsPageElements.xpath('//div[@id="shoot-featured-image"]//h4')[0].text_content().strip(), siteNum)
-    metadata.collections.add(metadata.tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
+    
+    if Prefs['collections_addseries']:    
+        metadata.collections.add(metadata.tagline)
 
     # Release Date
     if sceneDate:

@@ -65,7 +65,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         metadata.summary = detailsPageElements.xpath('//div[@class="description"]/p')[0].text_content().replace('Description:', '').strip()
 
         # Tagline and Collection(s)
-        metadata.collections.add(PAsearchSites.getSearchSiteName(siteNum))
+        if Prefs['collections_addsitename']:
+            metadata.collections.add(PAsearchSites.getSearchSiteName(siteNum))
 
         # No genres for scenes
 

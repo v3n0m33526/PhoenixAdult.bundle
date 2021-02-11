@@ -69,7 +69,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Tagline and Collection(s)
     subSite = PAsearchSites.getSearchSiteName(siteNum)
     metadata.tagline = subSite
-    metadata.collections.add(subSite)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(subSite)
 
     # Genres
     if subSite.lower() == 'Family Lust'.lower():

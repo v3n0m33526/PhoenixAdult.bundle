@@ -55,7 +55,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = PAsearchSites.getSearchSiteName(siteNum).strip()
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(tagline)
 
     # Get Collection from Related Videos
     collection = None
@@ -73,7 +74,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             collection = 'Pantyhose'
 
     if collection:
-        metadata.collections.add(collection)
+        if Prefs['collections_addseries']:
+            metadata.collections.add(collection)
 
     # Release Date
     if sceneDate:

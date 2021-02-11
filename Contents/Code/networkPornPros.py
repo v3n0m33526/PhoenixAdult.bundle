@@ -63,11 +63,12 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     siteName = PAsearchSites.getSearchSiteName(siteNum)
     metadata.collections.clear()
     metadata.tagline = siteName
-    metadata.collections.add(siteName)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(siteName)
 
     # Actors
     movieActors.clearActors()
-    actors = detailsPageElements.xpath('//div[contains(@class, "pt-md")]//a[contains(@href, "/girls/")]')
+    actors = detailsPageElements.xpath('//div[contains(@class, "pt-md") or contains(@class, "post-meta")]//a[contains(@href, "/girls/")]')
     if actors:
         if len(actors) == 3:
             movieGenres.addGenre('Threesome')

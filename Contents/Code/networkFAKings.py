@@ -78,9 +78,12 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Collections / Tagline
     metadata.collections.clear()
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(metadata.studio)
     tagline = PAutils.parseTitle(detailsPageElements.xpath('//strong[contains(.,"Serie")]//following-sibling::a')[0].text_content().strip(), siteNum)
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addseries']:
+        metadata.collections.add(tagline)
 
     # Genres
     movieGenres.clearGenres()

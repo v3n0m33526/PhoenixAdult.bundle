@@ -116,7 +116,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         # Tagline and Collection(s)
         tagline = dvdPageElements.xpath('//h3[@class="dvdTitle"]')[0].text_content().strip().title().replace('Xxx', 'XXX')
         metadata.tagline = tagline
-        metadata.collections.add(tagline)
+        if Prefs['collections_addseries']:
+            metadata.collections.add(tagline)
 
         # Summary
         try:
@@ -174,7 +175,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         # Tagline/collections
         tagline = 'Wicked Pictures'
         metadata.tagline = tagline
-        metadata.collections.add(tagline)
+        if Prefs['collections_addsitename']:
+            metadata.collections.add(tagline)
 
         # Summary
         try:

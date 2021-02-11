@@ -61,15 +61,17 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = PAsearchSites.getSearchSiteName(siteNum)
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(tagline)
 
     # Genres
     movieGenres.clearGenres()
     movieGenres.addGenre('French porn')
 
-    movieName = detailsPageElements.xpath('//span[@class="movie"]/a')
-    if movieName:
-        metadata.collections.add(movieName[0].text_content().strip())
+    # Seems redundant to place the movie title in the collections?
+    # movieName = detailsPageElements.xpath('//span[@class="movie"]/a')
+    # if movieName:
+    #     metadata.collections.add(movieName[0].text_content().strip())
     movieGenres.addGenre('Blockbuster Movie')
 
     # Actors

@@ -81,5 +81,24 @@
         "label": "API Key",
         "type": "text",
         "default": ""
-    }
+    },
+	{
+        "id": "collections_addsitename",
+        "label": "Add Site Name (Or Studio) to Collection",
+        "type": "bool",
+        "default": "true"
+    },	
+	{
+        "id": "collections_addseries",
+        "label": "Add Series to Collection",
+        "type": "bool",
+        "default": "true"
+    },
+	{
+        "id": "collections_addactors",
+        "label": "Add Actors to Collection",
+        "type": "bool",
+        "default": "false"
+    }	
+	
 ]
