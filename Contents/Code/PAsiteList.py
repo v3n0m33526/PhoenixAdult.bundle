@@ -161,12 +161,13 @@ import networkThickCash
 import networkPornCZ
 import networkTopWebModels
 import siteMyDirtyHobby
+import networkMetadataAPI
 
 searchSites = {
     0: ('BlackedRaw', 'https://www.blackedraw.com', '/api'),
     1: ('Blacked', 'https://www.blacked.com', '/api'),
     2: ('Brazzers', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
-    3: (),
+    3: ('MetadataAPI', 'https://metadataapi.net', 'https://api.metadataapi.net'),
     4: (),
     5: ('My Friends Hot Mom', 'https://tour.naughtyamerica.com', 'https://i6p9q9r18e-3.algolianet.com/1/indexes/*/queries'),
     6: ('My First Sex Teacher', 'https://tour.naughtyamerica.com', 'https://i6p9q9r18e-3.algolianet.com/1/indexes/*/queries'),
@@ -1323,7 +1324,7 @@ searchSites = {
     1157: ('Blacks On Moms', 'http://blacksonmoms.com', '/'),
     1158: ('Filthy Family', 'https://filthyfamily.com', '/'),
     1159: ('Melena Maria Rya', 'https://www.melenamariarya.com', '/scene/'),
-    1160: ('Anal Overdose', 'https://filthyfamily.com', '/'),
+    1160: ('Anal Overdose', 'https://analoverdose.com', '/'),
     1161: ('Banging Beauties', 'https://www.bangingbeauties.com', '/'),
     1162: ('Chocolate BJs', 'https://www.chocolatebjs.com', '/'),
     1163: ('Oral Overdose', 'https://www.oraloverdose.com', '/'),
@@ -1659,6 +1660,10 @@ def getProviderFromSiteNum(siteNum):
         # Brazzers
         elif siteNum == 2 or (54 <= siteNum <= 81) or siteNum == 582 or siteNum == 690:
             provider = network1service
+
+        # MetadataAPI
+        elif siteNum == 3:
+            provider = networkMetadataAPI
 
         # Naughty America
         elif (5 <= siteNum <= 51) or siteNum == 341 or (393 <= siteNum <= 396) or (467 <= siteNum <= 468) or siteNum == 581 or siteNum == 620 or siteNum == 625 or siteNum == 691 or siteNum == 749:
