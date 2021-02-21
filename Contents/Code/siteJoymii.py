@@ -3,9 +3,13 @@ import PAutils
 
 
 def search(results, lang, siteNum, searchData):
-    # joymii search can't do actor + scene, so just search for the first word, which gets good results
-    query = urllib.quote(searchData.title.split()[0])
-    req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + query)
+    query = urllib.quote_plus(searchData.title)
+    if searchData.title.lower().startswith("code"):
+        directURL = PAsearchSites.getSearchBaseURL(siteNum) + "/site/set-video/code/" + searchData.title.split()[1]
+        req = PAutils.HTTPRequest(directURL)
+        results.Append(MetadataSearchResult(id='%s|%d|%s' % (PAutils.Encode(directURL), siteNum, "01-01-01"), name='%s [%s] %s' % (searchData.title, PAsearchSites.getSearchSiteName(siteNum), "01-01-01"), score=100, lang=lang))
+    else:
+        req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + query)
     searchResults = HTML.ElementFromString(req.text)
     for searchResult in searchResults.xpath('//div[contains(@class, "set set-photo")]'):
         titleNoFormatting = searchResult.xpath('.//div[contains(@class, "title")]//a')[0].text_content().title().strip()

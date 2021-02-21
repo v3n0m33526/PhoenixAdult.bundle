@@ -43,7 +43,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         metadata.title = detailsPageElements.xpath('//h1[@class="entry-title"]/text()')[0].strip()
 
         # Summary
-        metadata.summary = detailsPageElements.xpath('//div[@class="video-description"]')[0].text_content().strip()
+        metadata.summary = detailsPageElements.xpath('//div[@class="video-description"]')[0].text_content().strip().replace('Sign up to get the full Wow Porn Video here!!','').replace('Please enable JavaScript','')
 
         # Genres & Actors
         movieGenres.clearGenres()
@@ -52,7 +52,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         for tagLink in tags:
             tagName = tagLink.xpath('./@title')[0]
             tagURL = tagLink.xpath('./@href')[0]
-            if '/teen/' not in tagURL:
+            if '/teen/' not in tagURL and '/girls/' not in tagURL:
                 movieGenres.addGenre(tagName)
             else:
                 movieActors.addActor(tagName, '')
@@ -61,7 +61,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         metadata.title = detailsPageElements.xpath('//h1[@class="title"]/text()')[0].strip()
 
         # Summary
-        metadata.summary = detailsPageElements.xpath('//div[contains(@class, "entry")]//p')[2].text_content().strip()
+        metadata.summary = detailsPageElements.xpath('//div[contains(@class, "entry")]//p')[2].text_content().strip().replace('Sign up to get the full Wow Porn Video here!!','').replace('Please enable JavaScript','')
 
         # Genres & Actors
         movieGenres.clearGenres()

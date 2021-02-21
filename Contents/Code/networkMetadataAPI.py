@@ -49,7 +49,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.collections.clear()
     tagline = detailsPageElements['site']['name']
     metadata.tagline = tagline
-    metadata.collections.add(tagline)
+    if Prefs['collections_addsitename']:
+        metadata.collections.add(tagline)
 
     # Release Date
     date = detailsPageElements['date']

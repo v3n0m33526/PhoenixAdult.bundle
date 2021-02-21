@@ -152,18 +152,22 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorData = req.json()['result'][0]
 
         actorName = actorData['name']
+        actorGender = actorData['gender']
         actorPhotoURL = ''
         if actorData['images'] and actorData['images']['profile']:
-            actorPhotoURL = actorData['images']['profile'][0]['xs']['url']
-
-        movieActors.addActor(actorName, actorPhotoURL)
+            actorPhotoURL = actorData['images']['profile']['0']['xs']['url']
+        
+        if actorGender == "female":
+            movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []
     for imageType in ['poster', 'cover']:
         if imageType in detailsPageElements['images']:
             for image in detailsPageElements['images'][imageType]:
-                art.append(image['xx']['url'])
+                if (image != 'alternateText'):
+                    if (detailsPageElements['images'][imageType][image]['xx']['url']):
+                        art.append(detailsPageElements['images'][imageType][image]['xx']['url'])
 
     Log('Artwork found: %d' % len(art))
     for idx, posterUrl in enumerate(art, 1):

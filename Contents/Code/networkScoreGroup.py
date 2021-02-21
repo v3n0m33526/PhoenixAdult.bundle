@@ -5,7 +5,10 @@ import PAutils
 def search(results, lang, siteNum, searchData):
     sceneID = re.sub(r'\D', '', searchData.title)
     actorName = re.sub(r'\s\d.*', '', searchData.title).replace(' ', '-')
-    sceneURL = PAsearchSites.getSearchSearchURL(siteNum) + actorName + '/' + sceneID
+    if "http" in searchData.title:
+        sceneURL = searchData.title
+    else:
+        sceneURL = PAsearchSites.getSearchSearchURL(siteNum) + actorName + '/' + sceneID
 
     req = PAutils.HTTPRequest(sceneURL)
     detailsPageElements = HTML.ElementFromString(req.text)

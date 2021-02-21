@@ -4,9 +4,23 @@ import PAutils
 
 
 def search(results, lang, siteNum, searchData):
-    params = {
-        'input_search_sm': searchData.encoded
-    }
+    m = re.search(r'x-?art.(\d{2}.\d{2}.\d{2}).(.+)', searchData.title, re.IGNORECASE)
+    if m:
+        searchWords = m.group(2).replace('.',' ').split(' ')
+        wordCount = len(searchWords)
+        if wordCount > 2:
+            searchString = ' '.join(searchWords[-2:])
+            params = {
+                'input_search_sm': searchString
+            }
+        else:
+            params = {
+                'input_search_sm': searchData.encoded
+            }
+    else:
+        params = {
+            'input_search_sm': searchData.encoded
+        }
     req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum), params=params)
     searchResults = HTML.ElementFromString(req.text)
 
