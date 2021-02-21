@@ -5,7 +5,7 @@ import PAutils
 def search(results, lang, siteNum, searchData):
     req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded)
     searchResults = HTML.ElementFromString(req.text)
-    for searchResult in searchResults.xpath('//div[@class="grid-item"]'):
+    for searchResult in searchResults.xpath('//div[contains(@class, "item-grid")]/div[@class="grid-item"]'):
         titleNoFormatting = searchResult.xpath('.//a[@class="grid-item-title"]/text()')[0]
         curID = PAutils.Encode(searchResult.xpath('.//a[@class="grid-item-title"]/@href')[0])
 
@@ -31,14 +31,24 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Tagline and Collection(s)
     if Prefs['collections_addsitename']:
         metadata.collections.add("JAY's POV")
+        metadata.collections.add('AdultEmpireCash')
+        if 'filthykings' in sceneURL:
+            metadata.collections.add(PAsearchSites.getSearchSiteName(siteNum))
 
     # Studio
     metadata.studio = detailsPageElements.xpath('//div[@class="studio"]//span/text()')[1].strip()
 
+    # Summary
+    summary = detailsPageElements.xpath('//div[@class="synopsis"]/p/text()')
+    if summary:
+        metadata.summary = summary[0].strip()
+
     # Director
-    director = metadata.directors.new()
-    directorName = detailsPageElements.xpath('//div[@class="director"]/text()')[0].strip()
-    director.name = directorName
+    directorElement = detailsPageElements.xpath('//div[@class="director"]/text()')
+    if directorElement:
+        director = metadata.directors.new()
+        directorName = directorElement[0].strip()
+        director.name = directorName
 
     # Release Date
     date = detailsPageElements.xpath('//div[@class="release-date"]/text()')[0].strip()
@@ -53,6 +63,9 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorPhotoURL = actorLink.get('data-bgsrc')
 
         movieActors.addActor(actorName, actorPhotoURL)
+
+    if 'filthykings' and '796896' in sceneURL:
+        movieActors.addActor('Alice Visby', '')
 
     # Genres
     movieGenres.clearGenres()
