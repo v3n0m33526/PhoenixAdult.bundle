@@ -88,9 +88,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     actorstr = actorstr.replace(',', '&')
     actorlist = actorstr.split('&')
 
-    for actor in actorlist:
-        actorName = actor.strip()
+    for actorLink in actorlist:
+        actorName = actorLink.strip()
         actorPhotoURL = ''
+
         movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters

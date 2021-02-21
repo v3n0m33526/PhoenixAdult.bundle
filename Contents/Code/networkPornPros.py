@@ -4,7 +4,7 @@ import PAutils
 
 
 def search(results, lang, siteNum, searchData):
-    directURL = PAsearchSites.getSearchSearchURL(siteNum) + searchData.title.lower().replace(' ', '-')
+    directURL = PAsearchSites.getSearchSearchURL(siteNum) + searchData.title.lower().replace(' ', '-').replace('\'', '-')
     searchResults = [directURL]
 
     if unicode(directURL[-1], 'UTF-8').isdigit() and directURL[-2] == '-':
@@ -68,7 +68,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Actors
     movieActors.clearActors()
-    actors = detailsPageElements.xpath('//div[contains(@class, "pt-md") or contains(@class, "post-meta")]//a[contains(@href, "/girls/")]')
+    actors = detailsPageElements.xpath('//a[contains(@href, "/girls/")]')
     if actors:
         if len(actors) == 3:
             movieGenres.addGenre('Threesome')

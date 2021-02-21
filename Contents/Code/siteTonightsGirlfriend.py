@@ -106,8 +106,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         else:
             genres.append('BBG')
 
-    for genre in genres:
-        movieGenres.addGenre(genre)
+    for genreLink in genres:
+        genreName = genreLink
+
+        movieGenres.addGenre(genreName)
 
     # Posters/Background
     art = [
