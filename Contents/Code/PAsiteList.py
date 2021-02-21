@@ -1426,6 +1426,7 @@ searchSites = {
     1260: ('Night Creep', 'https://www.filthykings.com', '/MemberSceneSearch?q='),
     1261: ('Filthy Blowjobs', 'https://www.filthykings.com', '/MemberSceneSearch?q='),
     1262: ('Filthy Newbies', 'https://www.filthykings.com', '/MemberSceneSearch?q='),
+    1263: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
 }
 
 abbreviations = (
@@ -2125,7 +2126,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteLittleCaprice
 
         # WowGirls
-        elif siteNum == 743:
+        elif siteNum == 743 or siteNum == 1263:
             provider = siteWowGirls
 
         # VIPissy

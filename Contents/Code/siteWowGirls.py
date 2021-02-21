@@ -5,7 +5,7 @@ import PAutils
 
 def search(results, lang, siteNum, searchData):
 
-    req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded)
+    req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + '"' + searchData.encoded + '"')
     searchResults = HTML.ElementFromString(req.text)
     for searchResult in searchResults.xpath('//li[.//div[@class="time-infos"]]//a'):
         siteName = PAsearchSites.getSearchSiteName(siteNum) 
@@ -31,7 +31,9 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata.title = detailsPageElements.xpath('//h1[@itemprop="headline"]//span/text()')[-1].lstrip("- ").strip()
 
     # Summary
-    metadata.summary = detailsPageElements.xpath('//div[contains(@class, "video-embed")]//p')[0].text_content().strip()
+    summaryXpath = detailsPageElements.xpath('//div[contains(@class, "video-embed")]//p')
+    if summaryXpath:
+        metadata.summary = summaryXpath[0].text_content().strip()
 
     # Release date
     dateObj = parse(detailsPageElements.xpath('//div[@class="post_date"]/text()')[0])
@@ -66,25 +68,28 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Posters
     art = []
-    art.append(detailsPageElements.xpath('//img[contains(@class, "fp-splash")]/@src'))
+    artXpath = detailsPageElements.xpath('//img[contains(@class, "fp-splash")]/@src')
+    if artXpath:
+        art.append(artXpath)
 
     Log('Artwork found: %d' % len(art))
-    for idx, posterUrl in enumerate(art, 1):
-        if not PAsearchSites.posterAlreadyExists(posterUrl, metadata):
-            # Download image file for analysis
-            try:
-                image = PAutils.HTTPRequest(posterUrl)
-                im = StringIO(image.content)
-                resized_image = Image.open(im)
-                width, height = resized_image.size
-                # Add the image proxy items to the collection
-                if width > 1:
-                    # Item is a poster
-                    metadata.posters[posterUrl] = Proxy.Media(image.content, sort_order=idx)
-                if width > 100 and width > height:
-                    # Item is an art item
-                    metadata.art[posterUrl] = Proxy.Media(image.content, sort_order=idx)
-            except:
-                pass
+    if len(art) > 0:
+        for idx, posterUrl in enumerate(art, 1):
+            if not PAsearchSites.posterAlreadyExists(posterUrl, metadata):
+                # Download image file for analysis
+                try:
+                    image = PAutils.HTTPRequest(posterUrl)
+                    im = StringIO(image.content)
+                    resized_image = Image.open(im)
+                    width, height = resized_image.size
+                    # Add the image proxy items to the collection
+                    if width > 1:
+                        # Item is a poster
+                        metadata.posters[posterUrl] = Proxy.Media(image.content, sort_order=idx)
+                    if width > 100 and width > height:
+                        # Item is an art item
+                        metadata.art[posterUrl] = Proxy.Media(image.content, sort_order=idx)
+                except:
+                    pass
 
     return metadata
