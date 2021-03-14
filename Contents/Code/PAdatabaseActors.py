@@ -5060,6 +5060,7 @@ ActorsReplaceStudios = {
     },
     48: {  # Reality Lovers
         'Samantha Jolie': ['Holly'],
+    },
     49: {  # Perfect Gonzo, Sapphic Erotica
         'Foxy Di': ['Foxi'],
         'Nancy Ace': ['Nancy'],
@@ -5122,5 +5123,4 @@ ActorsStudioIndexes = {
     48: ['Reality Lovers'],
     49: ['Colette'],
     50: ['FTVGirls', 'First Time Videos'],
-
 }
