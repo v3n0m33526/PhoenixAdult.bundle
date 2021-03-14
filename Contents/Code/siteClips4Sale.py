@@ -10,8 +10,8 @@ def search(results, lang, siteNum, searchData):
     url = PAsearchSites.getSearchSearchURL(siteNum) + userID + '/*/Cat0-AllCategories/Page1/SortBy-bestmatch/Limit50/search/' + searchData.encoded
     req = PAutils.HTTPRequest(url)
     searchResults = HTML.ElementFromString(req.text)
-    for searchResult in searchResults.xpath('//div[contains(@class, "clipWrapper")]'):
-        titleNoFormatting = searchResult.xpath('.//h3')[0].text_content().replace('(HD MP4)', '').replace('(WMV)', '').strip()
+    for searchResult in searchResults.xpath('//div[contains(@class, "clipWrapper")]//div[contains(@class, "w-full md:w-3/4")]'):
+        titleNoFormatting = searchResult.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD MP4', '').replace('WMV', '').strip()
         curID = PAutils.Encode(searchResult.xpath('.//h3//a/@href')[0])
         subSite = searchResult.xpath('//title')[0].text_content().strip()
 
@@ -37,7 +37,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     movieActors.clearActors()
 
     # Title
-    metadata.title = detailsPageElements.xpath('//h3')[0].text_content().replace('(HD MP4)', '').replace('(WMV)', '').strip()
+    metadata.title = detailsPageElements.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD MP4', '').replace('WMV', '').strip()
 
     # Summary
     summary = detailsPageElements.xpath('//div[@class="individualClipDescription"]')[0].text_content().strip()
@@ -2631,10 +2631,6 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         if 'young goddess kim' in genreList:
             genreList.remove('young goddess kim')
 
-    else:
-        actorName = tagline
-        actorPhotoURL = ''
-        movieActors.addActor(actorName, actorPhotoURL)
     # Add Genres
     for genre in genreList:
         movieGenres.addGenre(genre)

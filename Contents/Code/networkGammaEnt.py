@@ -262,7 +262,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         director.name = 'Mason'
     elif siteNum == 329 or (siteNum >= 351 and siteNum <= 354) or siteNum == 861:
         metadata.studio = 'Blowpass'
-    elif siteNum == 331 or (siteNum >= 355 and siteNum <= 360) or siteNum == 750:
+    elif siteNum == 330 or siteNum == 331 or (siteNum >= 355 and siteNum <= 360) or siteNum == 750:
         metadata.studio = 'Fantasy Massage'
     elif (siteNum >= 365 and siteNum <= 372) or siteNum == 466 or siteNum == 690:
         metadata.studio = '21Sextury'
@@ -398,6 +398,11 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         except:
             pass
     if actors:
+        if metadata.studio == 'Fantasy Massage':
+            psPageUrl = 'https://www.fantasymassage.com/en/pornstars/'
+            psReq = PAutils.HTTPRequest(psPageUrl)
+            psPage = HTML.ElementFromString(psReq.text)
+            psList = psPage.xpath('//div[@id="pornstarsFilter_list"]//select/option/text()')
         for actorLink in actors:
             actorName = actorLink.text_content().strip()
             actorPhotoURL = ''
@@ -407,7 +412,11 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             actorPage = HTML.ElementFromString(req.text)
             actorPhotoURL = actorPage.xpath('//img[@class="actorPicture"]/@src | //span[@class="removeAvatarParent"]/img/@src')[0]
 
-            movieActors.addActor(actorName, actorPhotoURL)
+            if metadata.studio == 'Fantasy Massage':
+                if actorName in psList:
+                    movieActors.addActor(actorName, actorPhotoURL)
+            else:
+                movieActors.addActor(actorName, actorPhotoURL)
     else:
         try:
             dataLayer = detailsPageElements.xpath('//script[contains(text(), "dataLayer")]')[0].text_content()

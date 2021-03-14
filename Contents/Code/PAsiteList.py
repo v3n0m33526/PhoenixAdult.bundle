@@ -1427,6 +1427,7 @@ searchSites = {
     1261: ('Filthy Blowjobs', 'https://www.filthykings.com', '/MemberSceneSearch?q='),
     1262: ('Filthy Newbies', 'https://www.filthykings.com', '/MemberSceneSearch?q='),
     1263: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
+    1264: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),
 }
 
 abbreviations = (
@@ -2270,7 +2271,7 @@ def getProviderFromSiteNum(siteNum):
             provider = networkR18
 
         # Bang
-        elif siteNum == 813:
+        elif siteNum == 813 or siteNum == 1264:
             provider = networkBang
 
         # Vivid

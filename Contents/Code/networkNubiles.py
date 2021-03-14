@@ -85,55 +85,39 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     movieActors.clearActors()
     for actorLink in detailsPageElements.xpath('//div[contains(@class, "content-pane-performer")]/a'):
         actorName = actorLink.text_content().strip()
-
         actorPageURL = PAsearchSites.getSearchBaseURL(siteNum) + actorLink.get('href')
         req = PAutils.HTTPRequest(actorPageURL)
         actorPage = HTML.ElementFromString(req.text)
-        actorPhotoURL = 'http:' + actorPage.xpath('//div[contains(@class, "model-profile")]//img/@src')[0]
+        actorSpecs = actorPage.xpath('//div[contains(@class, "model-profile-desc")]/h5/text()')
+        actorBio = actorPage.xpath('//p[@class="model-bio"]/text()')[0].strip()
+        actorGender = ''
+        for spec in actorSpecs:
+            if 'Figure' in spec:
+                actorGender = 'female'
+        if (actorGender == ''):
+            if ('she' in actorBio) or ('her' in actorBio):
+                actorGender = 'female'            
 
-        movieActors.addActor(actorName, actorPhotoURL)
-
-    if 'Logan Long' in metadata.summary:
-        movieActors.addActor('Logan Long', '')
-    elif 'Patrick Delphia' in metadata.summary:
-        movieActors.addActor('Patrick Delphia', '')
-    elif 'Seth Gamble' in metadata.summary:
-        movieActors.addActor('Seth Gamble', '')
-    elif 'Alex D.' in metadata.summary:
-        movieActors.addActor('Alex D.', '')
-    elif 'Lucas Frost' in metadata.summary:
-        movieActors.addActor('Lucas Frost', '')
-    elif 'Van Wylde' in metadata.summary:
-        movieActors.addActor('Van Wylde', '')
-    elif 'Tyler Nixon' in metadata.summary:
-        movieActors.addActor('Tyler Nixon', '')
-    elif 'Logan Pierce' in metadata.summary:
-        movieActors.addActor('Logan Pierce', '')
-    elif 'Johnny Castle' in metadata.summary:
-        movieActors.addActor('Johnny Castle', '')
-    elif 'Damon Dice' in metadata.summary:
-        movieActors.addActor('Damon Dice', '')
-    elif 'Scott Carousel' in metadata.summary:
-        movieActors.addActor('Scott Carousel', '')
-    elif 'Dylan Snow' in metadata.summary:
-        movieActors.addActor('Dylan Snow', '')
-    elif 'Michael Vegas' in metadata.summary:
-        movieActors.addActor('Michael Vegas', '')
-    elif 'Xander Corvus' in metadata.summary:
-        movieActors.addActor('Xander Corvus', '')
-    elif 'Chad White' in metadata.summary:
-        movieActors.addActor('Chad White', '')
+            if (' he' in actorBio) or ('him' in actorBio) or ('his' in actorBio):
+                actorGender = 'male'
+        
+        if actorGender == 'female':
+            actorPhotoURL = 'http:' + actorPage.xpath('//div[contains(@class, "model-profile")]//img/@src')[0]
+            movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []
     xpaths = [
-        '//video/@poster'
+        '//div[@class="content-grid-item col-6 col-sm-4 col-lg-3" and .//a[text()="' + metadata.title + '"]]//picture/img/@*[contains(name(), "srcset")]',
+        '//div[@class="content-grid-item col-6 col-sm-4 col-md-3 col-lg-2-point-4 col-xl-2" and .//a[text()="' + metadata.title + '"]]//picture/img/@*[contains(name(), "srcset")]',
+        '//video/@poster',        
     ]
     for xpath in xpaths:
         for poster in detailsPageElements.xpath(xpath):
+            if (',' in poster):
+                poster = poster.split(' ')[-2].split(',')[1]
             if not poster.startswith('http'):
                 poster = 'http:' + poster
-
             art.append(poster)
 
     galleryURL = 'https://nubiles-porn.com/photo/gallery/' + metadata_id[0]
@@ -144,7 +128,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             poster = 'http:' + poster
 
         art.append(poster)
-
+        
     Log('Artwork found: %d' % len(art))
     for idx, posterUrl in enumerate(art, 1):
         if not PAsearchSites.posterAlreadyExists(posterUrl, metadata):

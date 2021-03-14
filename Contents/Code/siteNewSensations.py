@@ -139,13 +139,15 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
         try:
             actorPageURL = actorLink.get('href')
+            if not "http" in actorPageURL:
+                actorPageURL = PAsearchSites.getSearchSearchURL(siteNum) + actorPageURL
             req = PAutils.HTTPRequest(actorPageURL)
             actorPage = HTML.ElementFromString(req.text)
             actorPhotoURL = actorPage.xpath('//div[@class="modelBioPic"]/img/@src0_3x')[0]
         except:
             pass
-
-        movieActors.addActor(actorName, actorPhotoURL)
+        if actorPhotoURL:
+            movieActors.addActor(actorName, actorPhotoURL)
 
     Log('Artwork found: %d' % len(art))
     for idx, posterUrl in enumerate(art, 1):

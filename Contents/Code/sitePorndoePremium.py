@@ -66,19 +66,24 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     for actorLink in detailsPageElements.xpath('//span[@class="group inline"]/a'):
         actorName = ''
         actorPhotoURL = ''
-
+        actorGender = ''
         actorPageURL = actorLink.get('href')
         req = PAutils.HTTPRequest(actorPageURL)
         actorPage = HTML.ElementFromString(req.text)
         actorName = actorPage.xpath('//div[@data-item="c-13 r-11 m-c-15 / middle"]/h1')[0].text_content().strip()
         try:
-            actorPhotoURL = actorPage.xpath('//div[@class="avatar"]/picture[2]/img/@data-src')[0]
+            actorPhotoURL = actorPage.xpath('//div[@class="avatar"]/picture[1]/img/@data-src')[0]
             if 'http' not in actorPhotoURL:
                 actorPhotoURL = PAsearchSites.getSearchBaseURL(siteNum) + actorPhotoURL
+
+            actorCharacteristics = actorPage.xpath('//div[@data-item="c-23 r-31 m-c-33 m-r-41"]/div[@class="row sides"]//div[@class="h4 no-space"]/small/text()')
+            for characteristic in actorCharacteristics:
+                if ('Ass Type' in characteristic) or ('Tits Type' in characteristic):
+                    actorGender = 'female'
         except:
             pass
-
-        movieActors.addActor(actorName, actorPhotoURL)
+        if actorGender == 'female':
+            movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []

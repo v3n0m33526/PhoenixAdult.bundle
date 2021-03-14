@@ -68,13 +68,14 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Posters
     art = []
-    artXpath = detailsPageElements.xpath('//img[contains(@class, "fp-splash")]/@src')
+    artXpath = detailsPageElements.xpath('//img[contains(@class, "fp-splash")]/@data-src')
     if artXpath:
-        art.append(artXpath)
+        art.append(artXpath[0])
 
     Log('Artwork found: %d' % len(art))
     if len(art) > 0:
         for idx, posterUrl in enumerate(art, 1):
+            Log(posterUrl)
             if not PAsearchSites.posterAlreadyExists(posterUrl, metadata):
                 # Download image file for analysis
                 try:

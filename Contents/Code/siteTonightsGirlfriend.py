@@ -94,7 +94,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorName = maleActor.strip()
         actorPhotoURL = ''
 
-        movieActors.addActor(actorName, actorPhotoURL)
+        # movieActors.addActor(actorName, actorPhotoURL)
 
     # Genres
     movieGenres.clearGenres()

@@ -68,7 +68,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Actors
     movieActors.clearActors()
-    actors = detailsPageElements.xpath('//a[contains(@href, "/girls/")]')
+    actors = detailsPageElements.xpath('//a[contains(@class, "badge") and contains(@href, "/girls/")]')
     if actors:
         if len(actors) == 3:
             movieGenres.addGenre('Threesome')
@@ -87,23 +87,23 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
                 actorURL = actorLink.get('href')
                 if not actorURL.startswith('http'):
                     actorURL = PAsearchSites.getSearchBaseURL(siteNum) + actorURL
-
+    
                 req = PAutils.HTTPRequest(actorURL)
                 actorPageElements = HTML.ElementFromString(req.text)
-
+    
                 sceneDate = None
-                for sceneLink in actorPageElements.xpath('//div[@class="row"]//div[contains(@class, "box-shadow")]'):
-                    sceneTitle = sceneLink.xpath('.//h5[@class="card-title"]')[0].text_content().strip()
-                    date = sceneLink.xpath('.//@data-date')
-                    if metadata.title == sceneTitle and date:
-                        sceneDate = date[0].strip()
+                #for sceneLink in actorPageElements.xpath('//div[@class="row"]//div[contains(@class, "box-shadow")]'):
+                #    sceneTitle = sceneLink.xpath('.//h5[@class="card-title"]')[0].text_content().strip()
+                #    date = sceneLink.xpath('.//@data-date')
+                #    if metadata.title == sceneTitle and date:
+                #        sceneDate = date[0].strip()
 
     # Manually Add Actors
     # Add Actor Based on Title
     if 'Poke Her In The Front' == metadata.title:
         actorPhotoURL = ''
 
-        actorName = 'Sara Luv'
+        actorName = 'Sara Luvv'
         movieActors.addActor(actorName, actorPhotoURL)
 
         actorName = 'Dillion Harper'

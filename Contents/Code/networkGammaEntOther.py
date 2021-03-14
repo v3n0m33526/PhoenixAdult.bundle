@@ -169,7 +169,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             male.append((actorName, actorPhotoURL))
 
     combined = female + male
-    for actor in combined:
+    for actor in female:
         movieActors.addActor(actor[0], actor[1])
 
     # Posters

@@ -40,6 +40,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Summary
     metadata.summary = detailsPageElements.xpath('//p[@class="text"]')[0].text_content()
+    
 
     # Studio
     metadata.studio = PAsearchSites.getSearchSiteName(siteNum)
@@ -74,9 +75,20 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
         for actorLink in actors:
             actorName = actorLink.text_content().strip()
+            if actorName == "Katy Rose":
+                hubName = "Katy R"
+            else:
+                hubName = actorName
             actorPhotoURL = ''
-
-            movieActors.addActor(actorName, actorPhotoURL)
+            actorSearchURL = 'https://www.joymiihub.com/?s=' + hubName.replace(' ', '+').replace('.','')
+            req = PAutils.HTTPRequest(actorSearchURL)
+            actorSearchPage = HTML.ElementFromString(req.text)
+            
+            JoymiiHubActors = actorSearchPage.xpath('//ul[@class="gallery-a b d"]//a')
+            for hubActorLink in JoymiiHubActors:
+                hubActor = hubActorLink.xpath('.//span[not(@class)]/text()')
+                if hubActor[0].replace('.','').lower() == hubName.replace('.','').lower():
+                    movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters/Background
     art = []

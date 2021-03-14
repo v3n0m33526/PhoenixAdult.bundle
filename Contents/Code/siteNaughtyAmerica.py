@@ -86,11 +86,18 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorsPageURL = 'https://www.naughtyamerica.com/pornstar/' + actorName.lower().replace(' ', '-').replace("'", '')
         req = PAutils.HTTPRequest(actorsPageURL)
         actorsPageElements = HTML.ElementFromString(req.text)
-        img = actorsPageElements.xpath('//img[@class="performer-pic"]/@src')
-        if img:
-            actorPhotoURL = 'https:' + img[0]
+        actorBio = actorsPageElements.xpath('//p[@class="bio_about_text"]/text()')
+        actorGender = ''
+        for line in actorBio:
+            if ('she' in line) or ('her' in line):
+                actorGender = 'female'
+        
+        if actorGender == 'female':
+            img = actorsPageElements.xpath('//img[@class="performer-pic"]/@src')
+            if img:
+                actorPhotoURL = 'https:' + img[0]
 
-        movieActors.addActor(actorName, actorPhotoURL)
+            movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []
