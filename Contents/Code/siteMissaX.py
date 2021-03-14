@@ -75,6 +75,9 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     for actorLink in actors:
         actorName = actorLink.text_content().strip()
 
+        if siteNum == 1264 and metadata.title.endswith(': ' + actorName):
+            metadata.title = metadata.title[:-len(': ' + actorName)]
+
         actorPageURL = actorLink.get('href')
         req = PAutils.HTTPRequest(actorPageURL)
         actorPageElements = HTML.ElementFromString(req.text)
