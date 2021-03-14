@@ -113,14 +113,6 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Posters
     art = []
-    # xpaths = [
-    #    '//div[@class="gallery-item"]//img/@src',
-    #    '//img[contains(@src, "/videos")]/@src',
-    #    '//section[@id="product-gallery"]//img/@data-src'
-    # ]
-    # for xpath in xpaths:
-    #     for poster in detailsPageElements.xpath(xpath):
-    #         poster.replace(' ', '_')
 
     xpath = '//div[@class="flex-video widescreen"]//img[contains(@src, "/videos")]/@src'
     for poster in detailsPageElements.xpath(xpath):

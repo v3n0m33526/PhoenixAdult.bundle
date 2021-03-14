@@ -82,8 +82,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorData = getDatafromAPI(actorPageURL)['model']
 
         actorName = actorData['name']
-        actorPosters = actorData['images']['poster']
-        actorPhotoURL = actorPosters[0]['src']
+        actorPhotoURL = actorData['images']['profile'][0]['highdpi']['3x']
         if actorData['cupSize'] or actorData['bustMeasurment']:
             movieActors.addActor(actorName, actorPhotoURL)
 
