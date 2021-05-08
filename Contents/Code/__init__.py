@@ -14,6 +14,7 @@ from cStringIO import StringIO
 from datetime import datetime
 from dateutil.parser import parse
 from PIL import Image
+from traceback import format_exc
 import PAactors
 import PAgenres
 import PAsearchSites
@@ -47,7 +48,7 @@ def ValidatePrefs():
 
 class PhoenixAdultAgent(Agent.Movies):
     name = 'PhoenixAdult'
-    languages = [Locale.Language.English, Locale.Language.German, Locale.Language.French, Locale.Language.Spanish, Locale.Language.Italian]
+    languages = [Locale.Language.English, Locale.Language.German, Locale.Language.French, Locale.Language.Spanish, Locale.Language.Italian, Locale.Language.Dutch]
     accepts_from = ['com.plexapp.agents.localmedia', 'com.plexapp.agents.lambda']
     primary_provider = True
 
@@ -76,34 +77,43 @@ class PhoenixAdultAgent(Agent.Movies):
             Log('***MEDIA TITLE [from directory]*** %s' % newTitle)
             searchSettings = PAsearchSites.getSearchSettings(newTitle)
 
-            if searchSettings['siteNum'] is not None and searchSettings['searchTitle'].lower() == PAsearchSites.getSearchSiteName(searchSettings['siteNum']).lower():
+            if searchSettings['siteNum'] is None:
+                if title == newTitle and title != filename:
+                    title = filename
+
                 newTitle = '%s %s' % (newTitle, title)
                 Log('***MEDIA TITLE [from directory + media.name]*** %s' % newTitle)
                 searchSettings = PAsearchSites.getSearchSettings(newTitle)
 
+        providerName = None
         siteNum = searchSettings['siteNum']
+        searchTitle = searchSettings['searchTitle']
+        if not searchTitle:
+            searchTitle = title
+        searchDate = searchSettings['searchDate']
+        search = PAsearchData.SearchData(media, searchTitle, searchDate, filepath)
 
         if siteNum is not None:
-            search = PAsearchData.SearchData(media, searchSettings['searchTitle'], searchSettings['searchDate'], filepath, filename)
-
             provider = PAsiteList.getProviderFromSiteNum(siteNum)
             if provider is not None:
                 providerName = getattr(provider, '__name__')
                 Log('Provider: %s' % providerName)
-                provider.search(results, lang, siteNum, search)
+                try:
+                    provider.search(results, lang, siteNum, search)
+                except Exception as e:
+                    Log.Error(format_exc())
 
-                if Prefs['metadataapi_enable']:
-                    if providerName != 'networkMetadataAPI' and (not results or 100 != max([result.score for result in results])):
-                        siteNum = PAsearchSites.getSiteNumByFilter('MetadataAPI')
-                        if siteNum is not None:
-                            provider = PAsiteList.getProviderFromSiteNum(siteNum)
-                            if provider is not None:
-                                providerName = getattr(provider, '__name__')
-                                Log('Provider: %s' % providerName)
-                                try:
-                                    provider.search(results, lang, siteNum, search)
-                                except Exception as e:
-                                    Log(e)
+        if Prefs['metadataapi_enable'] and providerName != 'networkMetadataAPI' and (siteNum is None or not results or 100 != max([result.score for result in results])):
+            siteNum = PAsearchSites.getSiteNumByFilter('MetadataAPI')
+            if siteNum is not None:
+                provider = PAsiteList.getProviderFromSiteNum(siteNum)
+                if provider is not None:
+                    providerName = getattr(provider, '__name__')
+                    Log('Provider: %s' % providerName)
+                    try:
+                        provider.search(results, lang, siteNum, search)
+                    except Exception as e:
+                        Log.Error(format_exc())
 
         results.Sort('score', descending=True)
 
@@ -139,12 +149,21 @@ class PhoenixAdultAgent(Agent.Movies):
         # Add Content Rating
         metadata.content_rating = 'XXX'
 
+        if Prefs['custom_title_enable']:
+            data = {
+                'title': metadata.title,
+                'actors': ', '.join([actor.name.encode('ascii', 'ignore') for actor in metadata.roles]),
+                'studio': metadata.studio,
+                'series': ', '.join(set([collection.encode('ascii', 'ignore') for collection in metadata.collections if collection not in metadata.studio])),
+            }
+            metadata.title = Prefs['custom_title'].format(**data)
+
 
 def getSearchTitle(title):
     trashTitle = (
-        'RARBG', 'COM', r'\d{3,4}x\d{3,4}', 'HEVC', 'H265', 'AVC', r'\dK',
+        'RARBG', 'COM', r'\d{3,4}x\d{3,4}', 'HEVC', r'H\d{3}', 'AVC', r'\dK',
         r'\d{3,4}p', 'TOWN.AG_', 'XXX', 'MP4', 'KLEENEX', 'SD', 'HD',
-        'KTR', 'IEVA', 'WRB', 'NBQ', 'ForeverAloneDude',
+        'KTR', 'IEVA', 'WRB', 'NBQ', 'ForeverAloneDude', r'X\d{3}', 'SoSuMi',
     )
 
     for trash in trashTitle:
