@@ -87,7 +87,6 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorPhotoURL = actorPage.xpath('//div[contains(@class, "model")]//img/@src')[0]
 
         movieActors.addActor(actorName, actorPhotoURL)
-    movieActors.addActor('Mike Adriano', 'https://imgs1cdn.adultempire.com/actors/470003.jpg')
 
     # Posters
     art = []

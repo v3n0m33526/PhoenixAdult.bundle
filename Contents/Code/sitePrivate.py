@@ -74,13 +74,14 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     # Posters
     art = []
     xpaths = [
-        '//meta[@itemprop="thumbnailUrl"]/@content'
+        '//meta[@itemprop="thumbnailUrl"]/@content',
+        '//a[contains(@class,"scene-fakethumb")]/@href'
     ]
     for xpath in xpaths:
         for poster in detailsPageElements.xpath(xpath):
             art.append(poster)
 
-    backgrounds = detailsPageElements.xpath('//meta[@itemprop="contentURL"]/@content')[0]
+    backgrounds = detailsPageElements.xpath('//meta[@itemprop="contentURL"]/@content')[0].replace('pcoms','pcom')
     j = backgrounds.rfind('upload/')
     k = backgrounds.rfind('trailers/')
     sceneID = backgrounds[j + 7:k - 1]

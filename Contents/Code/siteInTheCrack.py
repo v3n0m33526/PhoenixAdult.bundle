@@ -22,7 +22,7 @@ def search(results, lang, siteNum, searchData):
     searchResults = HTML.ElementFromString(req.text)
     for searchResult in searchResults.xpath('//ul[@class="collectionGridLayout"]/li'):
         discoveredname = searchResult.xpath('.//span')[0].text_content().strip().lower()
-
+        Log(discoveredname)
         if searchData.title in discoveredname:
             modellink = searchResult.xpath('.//a/@href')[0]
             req = PAutils.HTTPRequest(PAsearchSites.getSearchBaseURL(siteNum) + modellink)

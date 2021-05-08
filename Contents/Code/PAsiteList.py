@@ -459,7 +459,7 @@ searchSites = {
     291: ('TwistysHard', 'https://www.twistys.com', 'https://site-api.project1service.com'),
     292: ('VirtualTaboo', 'https://virtualtaboo.com', '/search?q='),
     293: ('Spizoo', 'https://www.spizoo.com', '/search.php?query='),
-    294: ('Private', 'https://www.private.com', '/search.php?query='),
+    294: ('Private', 'https://en.private.com', '/search.php?query='),
     295: ('Anal Introductions', 'https://www.private.com', '/search.php?query='),
     296: ('Blacks on Sluts', 'https://www.private.com', '/search.php?query='),
     297: ('I confess Files', 'https://www.private.com', '/search.php?query='),

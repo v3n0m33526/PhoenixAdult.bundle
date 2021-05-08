@@ -87,8 +87,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             actorPhotoURL = actorPhotoElement[0]
             if not actorPhotoURL.startswith('http'):
                 actorPhotoURL = PAsearchSites.getSearchBaseURL(siteNum) + actorPhotoURL
-
-        movieActors.addActor(actorName, actorPhotoURL)
+        if actorName != "Laz Fyre":
+            movieActors.addActor(actorName, actorPhotoURL)
 
     # Genres
     movieGenres.clearGenres()
@@ -102,7 +102,6 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     art = []
     xpaths = [
         '//img[contains(@class, "update_thumb")]/@src0_4x',
-        '//img[contains(@class, "update_thumb")]/@src0_1x',
     ]
 
     for xpath in xpaths:
@@ -121,12 +120,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
                 resized_image = Image.open(im)
                 width, height = resized_image.size
                 # Add the image proxy items to the collection
-                if width > 1 and height >= width:
-                    # Item is a poster
-                    metadata.posters[posterUrl] = Proxy.Media(image.content, sort_order=idx)
-                if width > 100 and width > height:
-                    # Item is an art item
-                    metadata.art[posterUrl] = Proxy.Media(image.content, sort_order=idx)
+                metadata.posters[posterUrl] = Proxy.Media(image.content, sort_order=idx)
             except:
                 pass
 

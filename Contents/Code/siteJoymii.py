@@ -5,7 +5,7 @@ import PAutils
 def search(results, lang, siteNum, searchData):
     query = urllib.quote_plus(searchData.title)
     if searchData.title.lower().startswith("code"):
-        directURL = PAsearchSites.getSearchBaseURL(siteNum) + "/site/set-video/code/" + searchData.title.split()[1]
+        directURL = PAsearchSites.getSearchBaseURL(siteNum) + "/site/set-video/code/" + "_".join(searchData.title.split()[1:])
         req = PAutils.HTTPRequest(directURL)
         results.Append(MetadataSearchResult(id='%s|%d|%s' % (PAutils.Encode(directURL), siteNum, "01-01-01"), name='%s [%s] %s' % (searchData.title, PAsearchSites.getSearchSiteName(siteNum), "01-01-01"), score=100, lang=lang))
     else:

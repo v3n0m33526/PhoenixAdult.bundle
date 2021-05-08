@@ -37,7 +37,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     movieActors.clearActors()
 
     # Title
-    metadata.title = detailsPageElements.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD MP4', '').replace('WMV', '').strip()
+    metadata.title = detailsPageElements.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD','').replace('MP4', '').replace('Optimum','').replace('WMV', '').replace('.mp4','').replace('1080p','').replace('720p','').strip()
 
     # Summary
     summary = detailsPageElements.xpath('//div[@class="individualClipDescription"]')[0].text_content().strip()
@@ -73,6 +73,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
         genreList.append(genreName)
     # Add Actors
+    if 'lily labeau' in metadata.title.lower():
+        if 'Lily Lebeau' in genreList:
+            genreList.remove('Lily Lebeau')
+        movieActors.addActor('Lily LaBeau', '')
 
     #  CherryCrush
     if 'My cherry crush' in tagline:
@@ -2123,6 +2127,9 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     #  Princess Lexie's Clip Store
     elif 'Princess Lexie\'s Clip Store' in tagline:
         movieActors.addActor('Princess Lexie', '')
+    #  Princess Leia
+    elif 'Princess Leia' in tagline:
+        movieActors.addActor('Princess Leia', '')
 
     #  Princess Lucy
     elif 'Princess Lucy' in tagline:

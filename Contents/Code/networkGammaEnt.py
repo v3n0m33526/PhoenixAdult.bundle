@@ -398,11 +398,17 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         except:
             pass
     if actors:
+        psList = []
         if metadata.studio == 'Fantasy Massage':
             psPageUrl = 'https://www.fantasymassage.com/en/pornstars/'
             psReq = PAutils.HTTPRequest(psPageUrl)
             psPage = HTML.ElementFromString(psReq.text)
             psList = psPage.xpath('//div[@id="pornstarsFilter_list"]//select/option/text()')
+        elif metadata.studio == 'XEmpire':
+            psPageUrl = 'https://www.xempire.com/en/pornstars/'
+            psReq = PAutils.HTTPRequest(psPageUrl)
+            psPage = HTML.ElementFromString(psReq.text)
+            psList = psPage.xpath('//div[@id="models_list"]//select/option/text()')            
         for actorLink in actors:
             actorName = actorLink.text_content().strip()
             actorPhotoURL = ''
@@ -412,7 +418,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             actorPage = HTML.ElementFromString(req.text)
             actorPhotoURL = actorPage.xpath('//img[@class="actorPicture"]/@src | //span[@class="removeAvatarParent"]/img/@src')[0]
 
-            if metadata.studio == 'Fantasy Massage':
+            if psList:
                 if actorName in psList:
                     movieActors.addActor(actorName, actorPhotoURL)
             else:

@@ -89,21 +89,22 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         req = PAutils.HTTPRequest(actorPageURL)
         actorPage = HTML.ElementFromString(req.text)
         actorSpecs = actorPage.xpath('//div[contains(@class, "model-profile-desc")]/h5/text()')
-        actorBio = actorPage.xpath('//p[@class="model-bio"]/text()')[0].strip()
-        actorGender = ''
-        for spec in actorSpecs:
-            if 'Figure' in spec:
-                actorGender = 'female'
-        if (actorGender == ''):
-            if ('she' in actorBio) or ('her' in actorBio):
-                actorGender = 'female'            
+        actorBio = actorPage.xpath('//p[@class="model-bio"]')[0].text_content().strip()
+        if actorBio:
+            actorGender = ''
+            for spec in actorSpecs:
+                if 'Figure' in spec:
+                    actorGender = 'female'
+            if (actorGender == ''):
+                if ('she' in actorBio) or ('her' in actorBio):
+                    actorGender = 'female'            
 
-            if (' he' in actorBio) or ('him' in actorBio) or ('his' in actorBio):
-                actorGender = 'male'
+                if (' he' in actorBio) or ('him' in actorBio) or ('his' in actorBio):
+                    actorGender = 'male'
         
-        if actorGender == 'female':
-            actorPhotoURL = 'http:' + actorPage.xpath('//div[contains(@class, "model-profile")]//img/@src')[0]
-            movieActors.addActor(actorName, actorPhotoURL)
+            if actorGender == 'female':
+                actorPhotoURL = 'http:' + actorPage.xpath('//div[contains(@class, "model-profile")]//img/@src')[0]
+                movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []

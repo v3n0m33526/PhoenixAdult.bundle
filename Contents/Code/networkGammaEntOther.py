@@ -127,7 +127,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
             if Prefs['collections_addsitename']:
                 metadata.collections.add(detailsPageElements[collectionName])
     if (':' in detailsPageElements['title'] or '#' in detailsPageElements['title']) and len(scenesPagesElements) > 1:
-        if 'movie_title' in detailsPageElements and prefs['collections_addseries']:
+        if 'movie_title' in detailsPageElements and Prefs['collections_addseries']:
             metadata.collections.add(detailsPageElements['movie_title'])
 
     # Release Date
