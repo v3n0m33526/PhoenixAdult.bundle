@@ -699,6 +699,7 @@ ActorsReplaceStudios = {
         'Leony April': ['Jesica'],
         'Lexi Belle': ['Lexie'],
         'Lexi Diamond': ['Lexidiamond'],
+        'Lexi Dona': ['Mindy'],
         'Leyla Black': ['Jenet'],
         'Lia Chalizo': ['Dimitra'],
         'Lilian Lee': ['Lilian'],
@@ -5136,7 +5137,7 @@ ActorsReplaceStudios = {
     51: { # FTV Girls
         'Leah Gotti': ['Fiona'],
         'Brooklyn Jane': ['Brook'],                
-
+    },
 }
 
 ActorsStudioIndexes = {
