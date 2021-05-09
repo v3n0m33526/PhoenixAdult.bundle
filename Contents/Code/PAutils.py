@@ -156,7 +156,11 @@ def HTTPRequest(url, method='GET', **kwargs):
     proxies = {}
 
     if Prefs['proxy_enable']:
-        proxy = '%s://%s:%s' % (Prefs['proxy_type'], Prefs['proxy_ip'], Prefs['proxy_port'])
+        if Prefs['proxy_authentication_enable']:
+            proxy = '%s://%s:%s@%s:%s' % (Prefs['proxy_type'], Prefs['proxy_user'], Prefs['proxy_password'], Prefs['proxy_ip'], Prefs['proxy_port'])
+        else:
+            proxy = '%s://%s:%s' % (Prefs['proxy_type'], Prefs['proxy_ip'], Prefs['proxy_port'])
+
         proxies = {
             'http': proxy,
             'https': proxy,
@@ -368,3 +372,10 @@ def manualWordFix(word):
                 return correction
 
     return word
+
+
+def cleanHTML(text):
+    data = re.sub(r'<.*?>', '', text)
+    data = data.strip()
+
+    return data

@@ -139,6 +139,7 @@ import siteJacquieEtMichel
 import siteData18Content
 import sitePenthouseGold
 import siteData18Movies
+import siteData18Empire
 import siteWUNF
 import siteSexMex
 import siteExpliciteArt
@@ -163,6 +164,8 @@ import siteMyDirtyHobby
 import networkMetadataAPI
 import networkCouplesCinema
 import siteJVRPorn
+import networkGrooby
+import siteAdultEmpire
 
 searchSites = {
     0: ('BlackedRaw', 'https://www.blackedraw.com', '/api'),
@@ -231,7 +234,7 @@ searchSites = {
     63: ('Milfs Like It Big', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
     64: ('Big Tits in Uniform', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
     65: ('Doctor Adventures', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
-    66: ('Exxtra', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
+    66: ('Brazzers Exxtra', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
     67: ('Big Tits in Sports', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
     68: ('Big Butts like it big', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
     69: ('Big Wet Butts', 'http://www.brazzers.com', 'https://site-api.project1service.com'),
@@ -621,7 +624,7 @@ searchSites = {
     453: ('PurePOV', 'https://www.perfectgonzo.com', '/movies?tag=purepov&q='),
     454: ('SpermSwap', 'https://www.perfectgonzo.com', '/movies?tag=spermaswap&q='),
     455: ('TamedTeens', 'https://www.perfectgonzo.com', '/movies?tag=tamedteens&q='),
-    456: ('GiveMePink', 'https://www.perfectgonzo.com', '/movies?tag=givemepink&q='),
+    456: ('GiveMePink', 'https://givemepink.com', '/movies?tag=givemepink&q='),
     457: ('FistFlush', 'https://www.perfectgonzo.com', '/movies?tag=fistflush&q='),
     458: ('MilfThing', 'https://www.perfectgonzo.com', '/movies?tag=milfthing&q='),
     459: ('PerfectGonzoInterview', 'https://www.perfectgonzo.com', '/movies?tag=interview&q='),
@@ -1053,8 +1056,8 @@ searchSites = {
     885: ('Mylf X Owen Gray', 'https://www.mylf.com', '/movies/'),
     886: ('Mylf X SpankMonster', 'https://www.mylf.com', '/movies/'),
     887: ('StayHomeMilf', 'https://www.mylf.com', '/movies/'),
-    888: ('Evolved Fights Lesbian Edition', 'http://www.kink.com', '/search?channelIds=evolvedfightslesbianedition&q='),
-    889: ('Evolved Fights', 'http://www.kink.com', '/search?channelIds=evolvedfights&q='),
+    888: ('Kink Evolved Fights Lesbian Edition', 'http://www.kink.com', '/search?channelIds=evolvedfightslesbianedition&q='),
+    889: ('Kink Evolved Fights', 'http://www.kink.com', '/search?channelIds=evolvedfights&q='),
     890: ('WetVR', 'https://www.wetvr.com', '/video/'),
     891: ('HoloGirlsVR', 'https://www.hologirlsvr.com', '/Scenes?back=1&search='),
     892: ('LethalHardcoreVR', 'https://www.lethalhardcorevr.com', '/lethal-hardcore-vr-scenes.html?fq='),
@@ -1413,7 +1416,7 @@ searchSites = {
     1245: ('SlutInspection', 'https://www.slutinspection.com', '/sapi/'),
     1246: ('Hussie Pass', 'https://hussiepass.com', '/trailers/'),
     1247: ('Babe Archives', 'https://www.babearchives.com', '/search.php?query='),
-    1248: ('My Pervy Family', 'https://www.mypervyfamily.com/', '/MemberSceneSearch?q='),
+    1248: ('My Pervy Family', 'https://www.mypervyfamily.com', '/MemberSceneSearch?q='),
     1249: ('Foster Tapes', 'https://www.fostertapes.com', '/movies'),
     1250: ('Freeuse Fantasy', 'https://www.freeusefantasy.com', '/movies'),
     1251: ('Not My Grandpa', 'https://www.notmygrandpa.com', '/movies'),
@@ -1494,8 +1497,14 @@ searchSites = {
     1326: ('VNA Live', 'https://vnalive.com', '/videos/'),
     1327: ('Lauren Phillips', 'https://laurenphillips.com', '/search.php?query='),
     1328: ('Milfed', 'https://milfed.com', 'https://site-api.project1service.com'),
-    1329: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
-    1330: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),    
+    1329: ('PervNana', 'https://www.pervnana.com', '/movies/'),
+    1330: ('Data18 Empire', 'https://data18.empirestores.co', '/Search?q='),
+    1331: ('TGirl Japan Hardcore', 'https://www.tgirljapanhardcore.com', '/tour/trailers/'),
+    1332: ('TGirl Japan', 'https://www.tgirljapan.com', '/tour/trailers/'),
+    1333: ('Grooby Girls', 'https://www.groobygirls.com', '/tour/trailers/'),
+    1334: ('Adult Empire', 'https://www.adultempire.com', '/allsearch/search?q='),
+    1335: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
+    1336: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),    
 }
 
 abbreviations = (
@@ -1567,6 +1576,7 @@ abbreviations = (
     ('^esp ', 'EuroSexParties '),
     ('^ete ', 'EuroTeenErotica '),
     ('^ext ', 'ExxxtraSmall '),
+    ('^Exxtra ', 'BrazzersExxtra '),
     ('^family ', 'Taboo '),
     ('^fams ', 'FamilyStrokes '),
     ('^faq ', 'FirstAnalQuest '),
@@ -2131,7 +2141,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteMissaX
 
         # Mylf
-        elif (674 <= siteNum <= 683) or siteNum == 757 or siteNum == 842 or (siteNum >= 853 and siteNum <= 858) or (881 <= siteNum <= 887):
+        elif (674 <= siteNum <= 683) or siteNum == 757 or siteNum == 842 or (siteNum >= 853 and siteNum <= 858) or (881 <= siteNum <= 887) or siteNum == 1329:
             provider = siteMylf
 
         # Manually Add Actors
@@ -2199,7 +2209,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteLittleCaprice
 
         # WowGirls
-        elif siteNum == 743 or siteNum == 1329:
+        elif siteNum == 743 or siteNum == 1335:
             provider = siteWowGirls
 
         # VIPissy
@@ -2343,7 +2353,7 @@ def getProviderFromSiteNum(siteNum):
             provider = networkR18
 
         # Bang
-        elif siteNum == 813 or siteNum == 1330:
+        elif siteNum == 813 or siteNum == 1336:
             provider = networkBang
 
         # Vivid
@@ -2729,5 +2739,17 @@ def getProviderFromSiteNum(siteNum):
         # JVR Porn
         elif siteNum == 1286:
             provider = siteJVRPorn
+
+        # Data18 Empire
+        elif siteNum == 1330:
+            provider = siteData18Empire
+
+        # TGirl Japan (Hardcore)
+        elif (1331 <= siteNum <= 1333):
+            provider = networkGrooby
+
+        # Adult Empire
+        elif siteNum == 1334:
+            provider = siteAdultEmpire
 
     return provider

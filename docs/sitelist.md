@@ -44,6 +44,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Podcast
   - Video Masturbation
   - Video Of Myself at Home
++ #### Adult Empire | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Adult Time | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### AllAnalAllTheTime | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### AllHerLuv | Matching type: *[Limited](./manualsearch.md#limited-search)*
@@ -167,6 +168,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Big Tits in Sports
   - Big Tits in Uniform
   - Big Wet Butts
+  - Brazzers Exxtra
   - Busty and Real
   - Busty Z
   - Butts and Blacks
@@ -174,7 +176,6 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Day With A Porn Star
   - Dirty Masseur
   - Doctor Adventures
-  - Exxtra
   - Hot and Mean
   - Hot Chicks Big Asses
   - Milfs Like It Big
@@ -277,6 +278,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - CzechVR Casting
   - CzechVR Fetish
 + #### Data18 Porn Database | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
+  - Empire
   - Content
   - Movies
 + #### DDFNetwork | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
@@ -454,6 +456,10 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### Gender X | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### GirlfriendsFilms | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### GirlsOutWest | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
++ #### Grooby Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
+  - Grooby Girls
+  - TGirl Japan
+  - TGirl Japan Hardcore
 + #### Girls Rimming | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)* - **Date Add**
 + #### Girlsway | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - GirlCore
@@ -555,6 +561,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### Meana Wolf | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### Melena Maria Rya | Matching type: *[Exact](./manualsearch.md#exact-match)* - **SceneID, Date Add**
 + #### Melone Challenge | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
++ #### MetadataAPI | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### MetArt Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - ALS Scan
   - Errotica Archives
@@ -598,6 +605,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - BellesaHouse
   - FamilySinners
   - Transsensual
++ #### Milfed | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### MissaX | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### Mofos Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - Busted Babysitters
@@ -767,6 +775,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Chocolate BJs
   - Oral Overdose
   - Up Her Asshole
++ #### PervNana | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### PJGirls | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Playboy Plus | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### PornCZ | Matching type: *[Limited](./manualsearch.md#limited-search)* - **Title or Actor**

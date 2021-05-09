@@ -120,7 +120,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Genres
     movieGenres.clearGenres()
-    genres = ["MILF", "Mature"]
+    genres = ['MILF', 'Mature']
 
     if subSite.lower() == 'MylfBoss'.lower():
         for genreName in ['Office', 'Boss']:

@@ -3,14 +3,16 @@ import PAutils
 
 
 def search(results, lang, siteNum, searchData):
-    req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded)
+    cookies = {'splash': 'true'}
+    req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded, cookies=cookies)
     searchResults = HTML.ElementFromString(req.text)
-    for searchResult in searchResults.xpath('//div[@class="scene"]'):
-        titleNoFormatting = searchResult.xpath('.//h4[@itemprop="name"]//a')[0].text_content()
-        curID = PAutils.Encode(searchResult.xpath('.//a/@href')[0])
+    
+    for searchResult in searchResults.xpath('//div[@class="card scene"]'):
+        titleNoFormatting = searchResult.xpath('.//h3[@itemprop="name"]')[0].text_content()
+        curID = PAutils.Encode(searchResult.xpath('.//a[contains(@class, "btn-primary")]/@href')[0])
         releaseDate = searchData.dateFormat() if searchData.date else ''
 
-        subSite = searchResult.xpath('.//small[@class="shadow"]//a')[0].text_content().strip()
+        subSite = curID.replace("https://www.finishesthejob.com/scene/","").split("/")[0]
         if subSite.lower().replace('.com', '').replace(' ', '') == PAsearchSites.getSearchSiteName(siteNum).lower().replace(' ', ''):
             siteScore = 10
         else:
@@ -24,19 +26,20 @@ def search(results, lang, siteNum, searchData):
 
 
 def update(metadata, lang, siteNum, movieGenres, movieActors):
+    cookies = {'splash': 'true'}
     metadata_id = str(metadata.id).split('|')
     sceneURL = PAutils.Decode(metadata_id[0])
     if not sceneURL.startswith('http'):
         sceneURL = PAsearchSites.getSearchBaseURL(siteNum) + sceneURL
     sceneDate = metadata_id[2]
-    req = PAutils.HTTPRequest(sceneURL)
+    req = PAutils.HTTPRequest(sceneURL, cookies=cookies)
     detailsPageElements = HTML.ElementFromString(req.text)
 
     # Title
     metadata.title = detailsPageElements.xpath('//h1[@itemprop="name"]')[0].text_content().strip()
 
     # Summary
-    metadata.summary = detailsPageElements.xpath('//section[@class="scene-content"]//p[@itemprop="description"]')[0].text_content().strip()
+    metadata.summary = detailsPageElements.xpath('//div[@class="container"]//p[@itemprop="description"]')[0].text_content().strip()
 
     # Studio
     metadata.studio = 'Finishes The Job'
@@ -56,7 +59,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Actors
     movieActors.clearActors()
-    actors = detailsPageElements.xpath('//section[@class="scene-content"]//h4//a')
+    actors = detailsPageElements.xpath('//div[@class="container"]//h3//a')
     for actorLink in actors:
         actorName = actorLink.text_content()
         actorPhotoURL = ''
@@ -64,7 +67,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Genres
     movieGenres.clearGenres()
-    genres = detailsPageElements.xpath('//section[@class="scene-content"]//p[1]//a')
+    genres = detailsPageElements.xpath('//div[@class="container"]//p[1]//a')
     for genreLink in genres:
         genreName = genreLink.text_content().strip()
 
