@@ -20,7 +20,7 @@ def search(results, lang, siteNum, searchData):
 
         score = siteScore + 90 - Util.LevenshteinDistance(searchData.title.lower(), titleNoFormatting.lower())
 
-        results.Append(MetadataSearchResult(id='%s|%d|%s' % (curID, siteNum, releaseDate), name='%s [%s]' % (titleNoFormatting, subSite), score=score, lang=lang))
+        results.Append(MetadataSearchResult(id='%s|%d|%s' % (curID, siteNum, releaseDate), name='%s [%s]' % (titleNoFormatting, PAsearchSites.getSearchSiteName(siteNum)), score=score, lang=lang))
 
     return results
 
@@ -81,6 +81,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     for xpath in xpaths:
         for img in detailsPageElements.xpath(xpath):
+            if not img.startswith('http'):
+                img = PAsearchSites.getSearchBaseURL(siteNum) + img
             art.append(img)
 
     for posterCur in detailsPageElements.xpath('//div[contains(@class, "first-set")]//img'):
