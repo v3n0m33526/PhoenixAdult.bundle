@@ -21,7 +21,7 @@ def search(results, lang, siteNum, searchData):
     searchResults = getDataFromAPI(PAsearchSites.getSearchSearchURL(siteNum), 'name', searchData.title)['hits']['hits']
     for searchResult in searchResults:
         searchResult = searchResult['_source']
-        titleNoFormatting = searchResult['name']
+        titleNoFormatting = PAutils.parseTitle(searchResult['name'], siteNum)
         studioScene = searchResult['studio']['name'].title()
         seriesScene = searchResult['series']['name']
         curID = searchResult['identifier']
@@ -44,7 +44,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     detailsPageElements = getDataFromAPI(PAsearchSites.getSearchSearchURL(siteNum), 'identifier', sceneID)['hits']['hits'][0]['_source']
 
     # Title
-    metadata.title = detailsPageElements['name']
+    metadata.title = PAutils.parseTitle(detailsPageElements['name'], siteNum)
 
     # Summary
     metadata.summary = detailsPageElements['description']

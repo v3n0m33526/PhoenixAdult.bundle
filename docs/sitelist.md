@@ -49,6 +49,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### AllAnalAllTheTime | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### AllHerLuv | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### ALS Angels | Matching type: *[Exact](./manualsearch.md#exact-match)* - **Actress name with subject, Date Add**
++ #### AmateurBoxxx | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### Amateur Allure | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### AmourAngels | Matching type: *[Exact](./manualsearch.md#exact-match)* - **SceneID**
 + #### AngelaWhite | Matching type: *[Exact](./manualsearch.md#limited-search)* - **Actor**
@@ -135,6 +136,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - AleahJasmine
   - AlexisMonroe
   - AvaDawn
+  - Babe Archives
   - BellaHD
   - BellaNextDoor
   - Bryci
@@ -142,6 +144,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - CeceSeptember
   - HD19
   - HunterLeigh
+  - Hussie Pass
   - JanaFox
   - JoePerv
   - KatieBanks
@@ -277,6 +280,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - CzechVR
   - CzechVR Casting
   - CzechVR Fetish
++ #### DarkRoomVR | Matching type: *[Limited](./manualsearch.md#limited-search)* - **Title only**
 + #### Data18 Porn Database | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - Empire
   - Content
@@ -457,9 +461,13 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### GirlfriendsFilms | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### GirlsOutWest | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Grooby Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
+  - Black TGirls
+  - Brazilian Transsexuals
+  - Femout.xxx
   - Grooby Girls
   - TGirl Japan
   - TGirl Japan Hardcore
+  - TGirls.xxx
 + #### Girls Rimming | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)* - **Date Add**
 + #### Girlsway | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - GirlCore
@@ -480,6 +488,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### Holly Randall | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### HuCows | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Hustler | Matching type: *[Limited](./manualsearch.md#limited-search)* - **Date Add**
++ #### I Kiss Girls | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Interracial Pass | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Intersec Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)* - **Actor only**
   - Hardtied
@@ -591,12 +600,13 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - GinaGerson
   - JerkOffWithMe
   - Katya-Clover
+  - LiluMoon
   - MyLifeInMiami
   - NudeBeauties
   - OfficialChloeToy
   - RomiRain
+  - SlutInspection
   - TheLiseySweet
-  - ValeNappi
   - VickiValkyrie
   - VinaSkyXXX
   - YummyCouple
@@ -658,6 +668,7 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Mylfwood
   - StayHomeMilf
 + #### MyDirtyHobby | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
++ #### My Pervy Family | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### Naughty America Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
   - 2 Chicks Same Time
   - American Daydreams
@@ -1044,11 +1055,11 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - TushyRaw
   - Vixen
 + #### Sunny Lane Live | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
-+ #### Swallowed / TrueAnal / Nymphos / AllAnal | Matching type: *[Exact](./manualsearch.md#exact-match)* - **Direct URL**
++ #### Swallowed / TrueAnal / Nymphos / AllAnal / AnalOnly | Matching type: *[Exact](./manualsearch.md#exact-match)* - **Direct URL**
 + #### Swallow Salon | Matching type: *[Limited](./manualsearch.md#limited-search)*
 + #### TeamSkeet Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)* - **Date Add**
-  - BFFs
   - Badmilfs
+  - BFFs
   - Black Valley Girls
   - BraceFaced
   - CFNM Teens
@@ -1057,16 +1068,18 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - Dyked
   - ExxxtraSmall
   - FamilyStrokes
-  - FosterTapes
+  - Foster Tapes
+  - Freeuse Fantasy
   - Gingerpatch
   - Her Freshman Year
   - Innocent High
   - Little Asians
   - Lust HD
   - My Babysitters Club
+  - Not My Grandpa
   - Oye Loca
-  - POV Life
   - PervMom
+  - POV Life
   - Rub A Teen
   - Self Desire
   - She's New
@@ -1179,10 +1192,12 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
   - 60 Plus MILFS
   - Big Boob Bundle
   - Bootylicious Mag
+  - Christy Marks
   - Leg Sex
   - Naughty Mag
   - Porn Mega Load
   - Scoreland
+  - Scoreland2
   - XL Girls
 + #### Thick Cash Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-match)* - **Actor only, Date Add**
  - Ebony Tugs
@@ -1216,6 +1231,48 @@ The above is a reference list. Please see [the manualsearch doc](./manualsearch.
 + #### VirtualRealPorn | Matching type: *[Exact](./manualsearch.md#exact-match)* - **Direct URL**
 + #### VirtualTaboo | Matching type: *[Limited](./manualsearch.md#limited-search)* - **Title only**
 + #### Vivid Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)* - **Title only for DVDs**
++ #### VNA Network | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
+  - Alex Legend
+  - All Anal All The Time
+  - Angelina Castro Live
+  - Bobbi Eden Live
+  - Carmen Valentina
+  - Charlee Chase Live
+  - Deauxma Live
+  - Eva Lin Live
+  - Foxxed Up
+  - Fucked Feet
+  - Gabby Quinteros
+  - Girl Girl Mania
+  - Its Cleo Live
+  - Jelena Jensen
+  - Julia Ann Live
+  - Kayla Paige Live
+  - Kendra James
+  - Kimber Lee Live
+  - Kink305
+  - Maggie Green Live
+  - Maxine X
+  - Natalia Starr
+  - Nikki Benz
+  - Nina Kayy
+  - Penny Pax Live
+  - POV Mania
+  - Puma Swede XXX
+  - Rachel Storms XXX
+  - Rome Major
+  - Rubber Doll
+  - Samantha Grace
+  - Sara Jay
+  - Sex My Wife
+  - Shanda Fay
+  - Siri
+  - Sophie Dee Live
+  - Sunny Lane Live
+  - Tasha Reign
+  - Vicky at Home
+  - VNA Live
+  - Women By Julia Ann
 + #### VRBangers | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### VRConk | Matching type: *[Enhanced](./manualsearch.md#enhanced-search)*
 + #### VRHush | Matching type: *[Exact](./manualsearch.md#exact-match)* - **Direct URL**

@@ -3,16 +3,22 @@ import PAutils
 
 
 def search(results, lang, siteNum, searchData):
-    userID = searchData.title.split(' ', 1)[0]
-    sceneTitle = searchData.title.split(' ', 1)[1]
+    parts = searchData.title.split(' ', 1)
+    if len(parts) != 1 and searchData.filename != searchData.title:
+        parts.append(searchData.filename)
+    else:
+        Log('No scene name')
+        return results
+
+    userID = parts[0]
+    sceneTitle = parts[1]
     searchData.encoded = urllib.quote(sceneTitle)
 
     url = PAsearchSites.getSearchSearchURL(siteNum) + userID + '/*/Cat0-AllCategories/Page1/SortBy-bestmatch/Limit50/search/' + searchData.encoded
     req = PAutils.HTTPRequest(url)
     searchResults = HTML.ElementFromString(req.text)
-    # for searchResult in searchResults.xpath('//div[contains(@class, "clipWrapper")]//div[contains(@class, "w-full md:w-3/4")]'):
-    for searchResult in searchResults.xpath('//div[contains(@class, "clipWrapper")]//section[@class="p-0"]'):
-        titleNoFormatting = searchResult.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD MP4', '').replace('WMV', '').strip()
+    for searchResult in searchResults.xpath('//div[contains(@class, "clipWrapper")]//section[@id]'):
+        titleNoFormatting = searchResult.xpath('.//h3')[0].text_content().replace('(HD MP4)', '').replace('(WMV)', '').strip()
         curID = PAutils.Encode(searchResult.xpath('.//h3//a/@href')[0])
         subSite = searchResult.xpath('//title')[0].text_content().strip()
 
@@ -38,7 +44,41 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     movieActors.clearActors()
 
     # Title
-    metadata.title = detailsPageElements.xpath('.//h3')[0].text_content().replace('(','').replace(')','').replace('HD','').replace('MP4', '').replace('Optimum','').replace('WMV', '').replace('.mp4','').replace('1080p','').replace('720p','').strip()
+<<<<    fileTypes = [
+        'mp4',
+        'wmv',
+        'avi'
+    ]
+
+    qualities = [
+        'standard',
+        'hd',
+        '720p',
+        '1080p',
+        '4k'
+    ]
+
+    formats = [
+        '(%(quality)s %(fileType)s)',
+        '%(quality)s %(fileType)s',
+        '- %(quality)s;',
+        '(.%(fileType)s)',
+        '(%(quality)s)',
+        '(%(fileType)s)',
+        '.%(fileType)s',
+        '%(quality)s',
+        '%(fileType)s'
+    ]
+
+    temp_title = detailsPageElements.xpath('//h3')[0].text_content()
+    for format_ in formats:
+        for quality in qualities:
+            for fileType in fileTypes:
+                temp_title = temp_title.replace(format_ % {'quality': quality.lower(), 'fileType': fileType.lower()}, '')
+                temp_title = temp_title.replace(format_ % {'quality': quality.lower(), 'fileType': fileType.upper()}, '')
+                temp_title = temp_title.replace(format_ % {'quality': quality.upper(), 'fileType': fileType.lower()}, '')
+                temp_title = temp_title.replace(format_ % {'quality': quality.upper(), 'fileType': fileType.upper()}, '')
+    metadata.title = temp_title.strip()
 
     # Summary
     summary = detailsPageElements.xpath('//div[@class="individualClipDescription"]')[0].text_content().strip()
@@ -710,6 +750,11 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     #  Exquisite Goddess
     elif 'Exquisite Goddess' in tagline:
         movieActors.addActor('Exquisite Goddess', '')
+
+    # Family Therapy
+    elif 'Family Therapy' in tagline:
+        if genreList:
+            del genreList[0]
 
     #  femdomuncut Store
     elif 'femdomuncut Store' in tagline:
@@ -2639,6 +2684,22 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         if 'young goddess kim' in genreList:
             genreList.remove('young goddess kim')
 
+    #  Larkin Love
+    elif 'Larkin Love' in tagline:
+        movieActors.addActor('Larkin Love', '')
+
+    #  Lovely Lilith
+    elif 'Lovely Liliths Lusty Lair' in tagline:
+        movieActors.addActor('Lovely Lilith', '')
+
+    #  Siri
+    elif 'PORN STAR Siri: Fetish/Custom Clips' in tagline:
+        movieActors.addActor('Siri', '')
+
+    else:
+        actorName = tagline
+        actorPhotoURL = ''
+        movieActors.addActor(actorName, actorPhotoURL)
     # Add Genres
     for genre in genreList:
         movieGenres.addGenre(genre)

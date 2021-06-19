@@ -129,6 +129,7 @@ import networkScoreGroup
 import siteTwoTGirls
 import siteSicflics
 import networkModelCentro
+import siteAlettaOceanLive
 import siteCulioneros
 import networkPornWorld
 import siteMormonGirlz
@@ -166,6 +167,10 @@ import networkCouplesCinema
 import siteJVRPorn
 import networkGrooby
 import siteAdultEmpire
+import siteFamilyTherapy
+import siteFit18
+import siteDarkRoomVR
+import sitePuba
 
 searchSites = {
     0: ('BlackedRaw', 'https://www.blackedraw.com', '/api'),
@@ -971,7 +976,7 @@ searchSites = {
     800: ('ClubSweethearts', 'https://www.clubsweethearts.com', '/video.php?slug='),
     801: ('Elegant Angel', 'https://www.elegantangel.com', '/Search?q='),
     802: ('Family Sinners', 'https://www.familysinners.com', 'https://site-api.project1service.com'),
-    803: ('ReidMyLips', 'https://www.reidmylips.com', '/'),
+    803: ('ReidMyLips', 'https://www.reidmylips.com', '/updates/'),
     804: ('Playboy Plus', 'https://www.playboyplus.com', '/search'),
     805: ('Meana Wolf', 'https://meanawolf.elxcomplete.com', '/search.php?query='),
     806: ('Transsensual', 'https://www.transsensual.com', 'https://site-api.project1service.com'),
@@ -1192,7 +1197,7 @@ searchSites = {
     1021: ('Scoreland', 'https://www.scoreland.com', '/big-boob-videos/'),
     1022: ('TwoTGirls', 'https://twotgirls.com', '/videos?query='),
     1023: ('Sicflics', 'https://www.sicflics.com', '/search/'),
-    1024: ('AlettaOceanLive', 'https://www.alettaoceanlive.com', '/sapi/'),
+    1024: ('AlettaOceanLive', 'https://www.alettaoceanlive.com', '/tour/categories/movies_%d_d.html'),
     1025: ('FallInLovia', 'https://www.fallinlovia.com', '/sapi/'),
     1026: ('RomiRain', 'https://www.romirain.com', '/sapi/'),
     1027: ('JerkOffWithMe', 'https://www.jerkoffwithme.com', '/sapi/'),
@@ -1206,7 +1211,7 @@ searchSites = {
     1035: ('Lisey Sweet', 'https://theliseysweet.com', '/sapi/'),
     1036: ('MyLifeInMiami', 'https://mylifeinmiami.com', '/sapi/'),
     1037: ('GinaGerson', 'https://www.ginagerson.xxx', '/sapi/'),
-    1038: ('ValeNappi', 'https://www.valenappi.com', '/sapi/'),
+    1038: (),
     1039: ('VinaSkyXXX', 'https://www.vinaskyxxx.com', '/sapi/'),
     1040: ('Culioneros', 'http://www.pornditos.com', '/t1/videos/0_'),
     1041: ('Sexo en Public', 'http://www.pornditos.com', '/t1/videos/0_'),
@@ -1503,8 +1508,21 @@ searchSites = {
     1332: ('TGirl Japan', 'https://www.tgirljapan.com', '/tour/trailers/'),
     1333: ('Grooby Girls', 'https://www.groobygirls.com', '/tour/trailers/'),
     1334: ('Adult Empire', 'https://www.adultempire.com', '/allsearch/search?q='),
-    1335: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
-    1336: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),    
+    1335: ('Family Therapy', 'https://familytherapyxxx.com/', '/?s='),
+    1336: ('Fit 18', 'https://www.fit18.com', '/models/'),
+    1337: ('SpankMonster', 'https://spankmonster.com', '/MemberSceneSearch?q='),
+    1338: ('Femout', 'https://www.femout.xxx', '/tour/trailers/'),
+    1339: ('TGirls', 'https://www.tgirls.xxx', '/tour/trailers/'),
+    1340: ('TGirls Porn', 'https://www.tgirls.porn', '/tour/trailers/'),
+    1341: ('Brazilian Transsexuals', 'https://www.brazilian-transsexuals.com', '/tour/trailers/'),
+    1342: ('TS Casting Couch', 'https://www.ts-castingcouch.com', '/tour/trailers/'),
+    1343: ('Black TGirls', 'https://www.black-tgirls.com', '/tour/trailers/'),
+    1344: ('Christy Marks', 'https://www.christymarks.com', '/videos/'),
+    1345: ('Scoreland2', 'https://www.scoreland2.com', '/big-boob-scenes/'),
+    1346: ('DarkRoomVR', 'https://darkroomvr.com', '/search?q='),
+    1347: ('Puba', 'https://www.puba.com', '/pornstarnetwork/'),
+    1348: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
+    1349: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),        
 }
 
 abbreviations = (
@@ -2209,7 +2227,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteLittleCaprice
 
         # WowGirls
-        elif siteNum == 743 or siteNum == 1335:
+        elif siteNum == 743 or siteNum == 1348:
             provider = siteWowGirls
 
         # VIPissy
@@ -2353,7 +2371,7 @@ def getProviderFromSiteNum(siteNum):
             provider = networkR18
 
         # Bang
-        elif siteNum == 813 or siteNum == 1336:
+        elif siteNum == 813 or siteNum == 1349:
             provider = networkBang
 
         # Vivid
@@ -2361,7 +2379,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteVivid
 
         # AdultEmpireCash Network
-        elif siteNum == 815 or siteNum == 1248 or (1257 <= siteNum <= 1262):
+        elif siteNum == 815 or siteNum == 1248 or (1257 <= siteNum <= 1262) or siteNum == 1337:
             provider = networkAdultEmpireCash
 
         # PJGirls
@@ -2589,7 +2607,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteWoodmanCastingX
 
         # ScoreGroup
-        elif (1012 <= siteNum <= 1021):
+        elif (1012 <= siteNum <= 1021) or (1344 <= siteNum <= 1345):
             provider = networkScoreGroup
 
         # TwoTGirls
@@ -2600,8 +2618,12 @@ def getProviderFromSiteNum(siteNum):
         elif siteNum == 1023:
             provider = siteSicflics
 
+        # AlettaOceanLive
+        elif siteNum == 1024:
+            provider = siteAlettaOceanLive
+
         # ModelCentro network
-        elif (1024 <= siteNum <= 1039) or siteNum == 1051 or siteNum == 1058 or siteNum == 1075 or siteNum == 1191 or siteNum == 1245:
+        elif (1025 <= siteNum <= 1039) or siteNum == 1051 or siteNum == 1058 or siteNum == 1075 or siteNum == 1191 or siteNum == 1245:
             provider = networkModelCentro
 
         # Culioneros
@@ -2744,12 +2766,27 @@ def getProviderFromSiteNum(siteNum):
         elif siteNum == 1330:
             provider = siteData18Empire
 
-        # TGirl Japan (Hardcore)
-        elif (1331 <= siteNum <= 1333):
+        # Grooby Network
+        elif (1331 <= siteNum <= 1333) or (1338 <= siteNum <= 1343):
             provider = networkGrooby
 
         # Adult Empire
         elif siteNum == 1334:
             provider = siteAdultEmpire
+
+        # Family Therapy
+        elif siteNum == 1335:
+            provider = siteFamilyTherapy
+
+        # Fit 18
+        elif siteNum == 1336:
+            provider = siteFit18
+
+        # DarkRoomVR
+        elif siteNum == 1346:
+            provider = siteDarkRoomVR
+
+        elif siteNum == 1347:
+            provider = sitePuba
 
     return provider
