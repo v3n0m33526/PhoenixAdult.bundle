@@ -93,8 +93,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorPhotoURL = ''
         if actor['images']:
             actorPhotoURL = actor['images']['listing'][0]['highdpi']['double']
-        if actorData['cupSize'] or actorData['bustMeasurment']:
-            movieActors.addActor(actorName, actorPhotoURL)
+        movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []

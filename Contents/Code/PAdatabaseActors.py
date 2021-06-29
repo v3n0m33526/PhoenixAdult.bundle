@@ -5156,6 +5156,7 @@ ActorsReplaceStudios = {
         'Katrin Tequila': ['Janett'],
         'Susan Ayn': ['Susan'],
         'Violette Pink': ['Violette'],
+        },
     52: {  # Colette
         'Foxy Di': ['Foxi'],
         'Nancy Ace': ['Nancy'],

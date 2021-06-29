@@ -44,7 +44,7 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
     movieActors.clearActors()
 
     # Title
-<<<<    fileTypes = [
+    fileTypes = [
         'mp4',
         'wmv',
         'avi'
