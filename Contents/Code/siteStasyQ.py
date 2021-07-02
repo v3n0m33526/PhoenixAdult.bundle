@@ -1,21 +1,32 @@
 import PAsearchSites
 import PAutils
 
+cookies = {
+    'lang': 'en',
+}
+
 
 def search(results, lang, siteNum, searchData):
-    searchData.encoded = searchData.title.lower().replace(' ', '-')
-    url = PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded + '.html'
-    req = PAutils.HTTPRequest(url)
-    detailsPageElements = HTML.ElementFromString(req.text)
+    shootID = None
+    for parts in searchData.title.split():
+        if unicode(parts, 'UTF-8').isdigit():
+            shootID = parts
+            break
 
-    titleNoFormatting = detailsPageElements.xpath('//span[@class="update_title"]')[0].text_content().strip()
-    curID = PAutils.Encode(url)
-    date = detailsPageElements.xpath('//span[@class="availdate"]/text()')[0].strip()
-    releaseDate = parse(date).strftime('%Y-%m-%d')
+    if shootID:
+        sceneURL = PAsearchSites.getSearchBaseURL(siteNum) + '/r/Q/' + shootID
+        req = PAutils.HTTPRequest(sceneURL, cookies=cookies)
+        if req.ok:
+            detailsPageElements = HTML.ElementFromString(req.text)
 
-    score = 100
+            titleNoFormatting = detailsPageElements.xpath('//h1')[0].text_content().strip()
+            curID = PAutils.Encode(sceneURL)
 
-    results.Append(MetadataSearchResult(id='%s|%d' % (curID, siteNum), name='%s [ReidMyLips] %s' % (titleNoFormatting, releaseDate), score=score, lang=lang))
+            releaseDate = searchData.dateFormat() if searchData.date else ''
+
+            score = 100
+
+            results.Append(MetadataSearchResult(id='%s|%d|%s' % (curID, siteNum, releaseDate), name='%s [%s]' % (titleNoFormatting, PAsearchSites.getSearchSiteName(siteNum)), score=score, lang=lang))
 
     return results
 
@@ -23,53 +34,54 @@ def search(results, lang, siteNum, searchData):
 def update(metadata, lang, siteNum, movieGenres, movieActors):
     metadata_id = str(metadata.id).split('|')
     sceneURL = PAutils.Decode(metadata_id[0])
+    releaseDate = metadata_id[2]
+
     if not sceneURL.startswith('http'):
         sceneURL = PAsearchSites.getSearchBaseURL(siteNum) + sceneURL
-    req = PAutils.HTTPRequest(sceneURL)
+
+    req = PAutils.HTTPRequest(sceneURL, cookies=cookies)
     detailsPageElements = HTML.ElementFromString(req.text)
 
     # Title
-    metadata.title = detailsPageElements.xpath('//span[@class="update_title"]')[0].text_content().strip()
+    metadata.title = detailsPageElements.xpath('//h1')[0].text_content().strip()
 
     # Summary
-    metadata.summary = detailsPageElements.xpath('//span[@class="latest_update_description"]')[0].text_content().strip()
+    metadata.summary = detailsPageElements.xpath('//div[contains(@class, "about-section__text")]/p')[0].text_content().strip()
 
     # Studio
-    metadata.studio = 'ReidMyLips'
+    metadata.studio = 'StasyQ'
 
     # Tagline and Collection(s)
     metadata.collections.clear()
-    tagline = PAsearchSites.getSearchSiteName(siteNum).strip()
-    metadata.tagline = tagline
-    if Prefs['collections_addsitename']:
-        metadata.collections.add(tagline)
+    metadata.collections.add('StasyQ')
 
     # Release Date
-    date = detailsPageElements.xpath('//span[@class="availdate"]/text()')[0].strip()
-    if date:
-        date_object = parse(date)
+    if releaseDate:
+        date_object = parse(releaseDate)
         metadata.originally_available_at = date_object
         metadata.year = metadata.originally_available_at.year
 
     # Genres
     movieGenres.clearGenres()
-    for genreLink in detailsPageElements.xpath('//span[@class="update_tags"]//a'):
+    for genreLink in detailsPageElements.xpath('//section[contains(@class, "about-section")]//div[contains(@class, "tags")]//a'):
         genreName = genreLink.text_content().strip()
 
         movieGenres.addGenre(genreName)
 
     # Actors
     movieActors.clearActors()
-    actorName = 'Riley Reid'
-    actorPhotoURL = ''
+    for actorLink in detailsPageElements.xpath('//section[contains(@class, "content-section")]//div[contains(@class, "release-card__model")]//a'):
+        actorName = actorLink.text_content().strip()
+        actorPhotoURL = ''
 
-    movieActors.addActor(actorName, actorPhotoURL)
+        movieActors.addActor(actorName, actorPhotoURL)
 
     # Posters
     art = []
     xpaths = [
-        '//div[@class="update_image"]//img/@src0_2x',
+        '//div[@class="js-release-gallery "]//a/@href',
     ]
+
     for xpath in xpaths:
         for poster in detailsPageElements.xpath(xpath):
             art.append(poster)

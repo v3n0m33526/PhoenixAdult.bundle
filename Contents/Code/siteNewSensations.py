@@ -23,7 +23,7 @@ def search(results, lang, siteNum, searchData):
             try:
                 searchResult = HTML.ElementFromString(req.text)
 
-                titleNoFormatting = searchResult.xpath('(//div[@class="indScene"] | //div[@class="indSceneDVD"])/h2')[0].text_content().strip()
+                titleNoFormatting = searchResult.xpath('(//div[@class="indScene"] | //div[@class="indSceneDVD"])/h1')[0].text_content().strip()
                 curID = PAutils.Encode(sceneURL)
 
                 score = 100 - Util.LevenshteinDistance(searchData.title.lower(), titleNoFormatting.lower())
@@ -60,10 +60,10 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     if sceneType == 'Scene':
         # Title
-        metadata.title = detailsPageElements.xpath('//div[@class="indScene"]/h2')[0].text_content().strip()
+        metadata.title = detailsPageElements.xpath('//div[@class="indScene"]/h1')[0].text_content().strip()
 
         # Summary
-        metadata.summary = detailsPageElements.xpath('//div[@class="description"]/p')[0].text_content().replace('Description:', '').strip()
+        metadata.summary = detailsPageElements.xpath('//div[@class="description"]')[0].text_content().replace('Description:', '').strip()
 
         # Tagline and Collection(s)
         if Prefs['collections_addsitename']:
@@ -129,8 +129,8 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         # Posters
         try:
             art.append(detailsPageElements.xpath('//span[@id="trailer_thumb"]//img/@src')[0].strip())
-            for imgLink in detailsPageElements.xpath('//div[@class="videoBlock"]//img/@src0_3x'):
-                art.append(imgLink.strip())
+            # for imgLink in detailsPageElements.xpath('//div[@class="videoBlock"]//img/@src0_3x'):
+            #    art.append(imgLink.strip())
         except:
             pass
 

@@ -6,21 +6,28 @@ def search(results, lang, siteNum, searchData):
     cookies = {'splash': 'true'}
     req = PAutils.HTTPRequest(PAsearchSites.getSearchSearchURL(siteNum) + searchData.encoded, cookies=cookies)
     searchResults = HTML.ElementFromString(req.text)
-    
-    for searchResult in searchResults.xpath('//div[@class="card scene"]'):
+
+    pattern = re.compile(r'(?<=scene\/)(.*?)(?=\/)')
+    for searchResult in searchResults.xpath('//div[contains(@class, "scene")]'):
         titleNoFormatting = searchResult.xpath('.//h3[@itemprop="name"]')[0].text_content()
-        curID = PAutils.Encode(searchResult.xpath('.//a[contains(@class, "btn-primary")]/@href')[0])
+        curID = PAutils.Encode(searchResult.xpath('.//a/@href')[0])
         releaseDate = searchData.dateFormat() if searchData.date else ''
 
-        subSite = curID.replace("https://www.finishesthejob.com/scene/","").split("/")[0]
-        if subSite.lower().replace('.com', '').replace(' ', '') == PAsearchSites.getSearchSiteName(siteNum).lower().replace(' ', ''):
+        subSite = pattern.search(searchResult.xpath('.//div[@class="card-footer"]//a/@href')[0].strip()).group(0)
+        subSiteNum = PAsearchSites.getSiteNumByFilter(subSite)
+        if subSiteNum == siteNum:
             siteScore = 10
         else:
             siteScore = 0
 
         score = siteScore + 90 - Util.LevenshteinDistance(searchData.title.lower(), titleNoFormatting.lower())
 
-        results.Append(MetadataSearchResult(id='%s|%d|%s' % (curID, siteNum, releaseDate), name='%s [%s]' % (titleNoFormatting, PAsearchSites.getSearchSiteName(siteNum)), score=score, lang=lang))
+        if subSiteNum:
+            subSiteName = PAsearchSites.getSearchSiteName(PAsearchSites.getSiteNumByFilter(subSite))
+        else:
+            subSiteName = ''
+
+        results.Append(MetadataSearchResult(id='%s|%d|%s' % (curID, siteNum, releaseDate), name='%s [%s]' % (titleNoFormatting, subSiteName), score=score, lang=lang))
 
     return results
 
@@ -59,15 +66,15 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
 
     # Actors
     movieActors.clearActors()
-    actors = detailsPageElements.xpath('//div[@class="container"]//h3//a')
+    actors = detailsPageElements.xpath('//h3[contains(., "Starring")]//a')
     for actorLink in actors:
-        actorName = actorLink.text_content()
+        actorName = actorLink.text_content().strip()
         actorPhotoURL = ''
         movieActors.addActor(actorName, actorPhotoURL)
 
     # Genres
     movieGenres.clearGenres()
-    genres = detailsPageElements.xpath('//div[@class="container"]//p[1]//a')
+    genres = detailsPageElements.xpath('//p[contains(., "Categories")]//a')
     for genreLink in genres:
         genreName = genreLink.text_content().strip()
 
