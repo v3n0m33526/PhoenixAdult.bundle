@@ -171,6 +171,11 @@ import siteFamilyTherapy
 import siteFit18
 import siteDarkRoomVR
 import sitePuba
+import siteStasyQ
+import siteBoundHoneys
+import siteLustomic
+import siteStraponCum
+import siteHotwifeXXX
 
 searchSites = {
     0: ('BlackedRaw', 'https://www.blackedraw.com', '/api'),
@@ -1518,11 +1523,17 @@ searchSites = {
     1342: ('TS Casting Couch', 'https://www.ts-castingcouch.com', '/tour/trailers/'),
     1343: ('Black TGirls', 'https://www.black-tgirls.com', '/tour/trailers/'),
     1344: ('Christy Marks', 'https://www.christymarks.com', '/videos/'),
-    1345: ('Scoreland2', 'https://www.scoreland2.com', '/big-boob-scenes/'),
+    1345: ('ScorelandTwo', 'https://www.scoreland2.com', '/big-boob-scenes/'),
     1346: ('DarkRoomVR', 'https://darkroomvr.com', '/search?q='),
     1347: ('Puba', 'https://www.puba.com', '/pornstarnetwork/'),
-    1348: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
-    1349: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),        
+    1348: ('StasyQ', 'https://www.stasyq.com', '/r/Q/'),
+    1349: ('Bound Honeys', 'https://www.boundhoneys.com', '/search.php?search='),
+    1350: ('Lustomic', 'https://lustomic.com', '/video_preview_page.php?iID='),
+    1351: ('Girl Grind', 'https://www.girlgrind.com', 'https://site-api.project1service.com'),
+    1352: ('Strapon Cum', 'https://straponcum.com', '/updates/'),
+    1353: ('HotwifeXXX', 'http://www.hotwifexxx.com', '/tour_hwxxx/'),
+    1354: ('WowPorn', 'https://www.wowpornblog.com', '/?s='),
+    1355: ('Bang DVD', 'https://www.bang.com', 'https://617fb597b659459bafe6472470d9073a.us-east-1.aws.found.io/dvds/dvd/_search'),        
 }
 
 abbreviations = (
@@ -1721,6 +1732,7 @@ abbreviations = (
     ('^sart ', 'SexArt '),
     ('^sas ', 'SexandSubmission '),
     ('^sbj ', 'StreetBlowjobs '),
+    ('^scoreland2', 'ScorelandTwo '),
     ('^seb ', 'SexuallyBroken '),
     ('^sed ', 'SexualDisgrace '),
     ('^Shes New ', 'She\'s New '),
@@ -1779,7 +1791,7 @@ def getProviderFromSiteNum(siteNum):
             provider = networkStrike3
 
         # Brazzers
-        elif siteNum == 2 or (54 <= siteNum <= 81) or siteNum == 582 or siteNum == 690:
+        elif siteNum == 2 or (54 <= siteNum <= 81) or siteNum == 582 or siteNum == 690 or siteNum == 1351:
             provider = network1service
 
         # MetadataAPI
@@ -2227,7 +2239,7 @@ def getProviderFromSiteNum(siteNum):
             provider = siteLittleCaprice
 
         # WowGirls
-        elif siteNum == 743 or siteNum == 1348:
+        elif siteNum == 743 or siteNum == 1354:
             provider = siteWowGirls
 
         # VIPissy
@@ -2371,7 +2383,7 @@ def getProviderFromSiteNum(siteNum):
             provider = networkR18
 
         # Bang
-        elif siteNum == 813 or siteNum == 1349:
+        elif siteNum == 813 or siteNum == 1355:
             provider = networkBang
 
         # Vivid
@@ -2788,5 +2800,25 @@ def getProviderFromSiteNum(siteNum):
 
         elif siteNum == 1347:
             provider = sitePuba
+
+        # StasyQ
+        elif (1348 == siteNum):
+            provider = siteStasyQ
+
+        # Bound Honeys
+        elif siteNum == 1349:
+            provider = siteBoundHoneys
+
+        # Lustomic
+        elif siteNum == 1350:
+            provider = siteLustomic
+
+        # Strapon Cum
+        elif siteNum == 1352:
+            provider = siteStraponCum
+
+        # HotwifeXXX
+        elif siteNum == 1353:
+            provider = siteHotwifeXXX
 
     return provider

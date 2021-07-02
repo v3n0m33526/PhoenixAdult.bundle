@@ -70,6 +70,9 @@ def update(metadata, lang, siteNum, movieGenres, movieActors):
         actorPhotoURL = ''
 
         movieActors.addActor(actorName, actorPhotoURL)
+    
+    if siteNum == 1344:
+        movieActors.addActor('Christy Marks', '')
 
     # Genres
     movieGenres.clearGenres()
